@@ -24,3 +24,6 @@
 @import url('../blocks/element/__like-but/element__like-but.css');
 @import url('../blocks/element/__name/element__name.css');
 @import url('../blocks/element/__name-wrapper/element__name-wrapper.css');
+
+@import url('../blocks/footer/footer.css');
+@import url('../blocks/footer/__title/footer__title.css');
