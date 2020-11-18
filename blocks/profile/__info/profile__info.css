@@ -1,0 +1,12 @@
+.profile__info {
+  color: white;
+  display: grid;
+  grid-template-areas:
+    "name edit-but"
+    "desc .";
+  width: 336px;
+  height: 73px;
+  gap: 15px 15px;
+  padding-left: 30px;
+  padding-top: 20px;
+}
