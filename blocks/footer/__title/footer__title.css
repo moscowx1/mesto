@@ -3,3 +3,8 @@
   line-height: 22px;
   color: #545454;
 }
+@media all and (max-width: 1000px) {
+  .footer__title {
+    padding-left: 10%;
+  }
+}
