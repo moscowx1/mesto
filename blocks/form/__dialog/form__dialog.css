@@ -1,0 +1,15 @@
+.form__dialog {
+  background-color: white;
+  width: 430px;
+  height: 330px;
+  margin:auto;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+}
+
+@media all and (max-width: 500px) {
+  .form__dialog {
+    width: 282px;
+  }
+}

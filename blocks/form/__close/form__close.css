@@ -1,0 +1,17 @@
+.form__close {
+  position: relative;
+  left: 100%;
+  top: -100%;
+  width: 40px;
+  height: 40px;
+  background-image: url('../../../images/close.svg');
+  background-position: center;
+  background-color: transparent;
+  border:none;
+}
+
+@media all and (max-width: 500px) {
+  .form__close {
+    left: 242px;
+  }
+}
