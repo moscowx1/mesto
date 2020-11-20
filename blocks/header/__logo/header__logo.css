@@ -4,3 +4,9 @@
   justify-self: start;
   align-self: start;
 }
+
+@media all and (max-width: 1000px) {
+  .header__logo {
+    padding-left: 10%;
+  }
+}

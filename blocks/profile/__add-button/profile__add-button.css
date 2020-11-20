@@ -11,3 +11,10 @@
   background-position: center;
   margin-left: auto;
 }
+
+@media all and (max-width: 800px){
+  .profile__add-button {
+    margin: 30px auto;
+    width: 282px;
+  }
+}
