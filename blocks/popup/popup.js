@@ -13,7 +13,7 @@ popup.addEventListener("submit", function (evt){
   popup.classList.remove("popup_opened");
 });
 
-let open_btn = document.querySelector("#form__open");
+let open_btn = document.querySelector("#popup__open");
 open_btn.addEventListener("click", function (){
   nameInput.value = name.textContent;
   descInput.value = desc.textContent;
