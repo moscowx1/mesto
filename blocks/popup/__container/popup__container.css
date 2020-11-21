@@ -1,4 +1,4 @@
-.form__dialog {
+.popup__container {
   background-color: white;
   width: 430px;
   height: 330px;
@@ -6,10 +6,12 @@
   display: flex;
   flex-direction: column;
   z-index: 1;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
 }
 
 @media all and (max-width: 500px) {
-  .form__dialog {
+  .popup__container {
     width: 282px;
   }
 }

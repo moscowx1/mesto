@@ -7,3 +7,13 @@
   border: none;
   background-position: center;
 }
+
+.profile__edit-button:hover {
+  opacity: .6;
+}
+
+@media all and (max-width: 500px) {
+  .profile__edit-button {
+    margin-top: 5px;
+  }
+}
