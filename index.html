@@ -22,11 +22,14 @@
            alt="Логотип">
       <div class="profile__info">
         <div class="profile__name-wrapper">
-          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <h1 class="profile__name"
+              id="name">Жак-Ив Кусто</h1>
           <input type="button"
-                 class="profile__edit-button">
+                 class="profile__edit-button"
+                 id="form__open">
         </div>
-        <p class="profile__desc">Исследователь океана</p>
+        <p class="profile__desc"
+           id="desc">Исследователь океана</p>
       </div>
       <input type="button"
              class="profile__add-button">
@@ -104,20 +107,26 @@
     <h2 class="footer__title">© 2020 Mesto Russia</h2>
   </footer>
 
-  <div class="form form_invisible">
+  <form class="form form_invisible"
+       id="form"
+       action="">
     <div class="form__dialog">
       <h2 class="form__title">Редактировать профиль</h2>
         <input type="text"
+               id="name-input"
                class="form__input-text">
         <input type="text"
+               id="description-input"
                class="form__input-text">
       <input type="submit"
              class="form__submit"
              value="Сохранить">
       <input type="button"
-             class="form__close">
+             class="form__close"
+             id="form__close">
     </div>
-  </div>
+  </form>
 </div>
+<script src="blocks/form/form.js"></script>
 </body>
 </html>
