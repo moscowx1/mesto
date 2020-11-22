@@ -1,4 +1,5 @@
 .element__name-wrapper {
   display: flex;
-  padding: 25px 15px 0 20px;
+  padding: 25px 20px 30px 20px;
+  justify-content: space-between;
 }
