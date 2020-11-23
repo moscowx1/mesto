@@ -10,3 +10,10 @@
     padding-left: 10%;
   }
 }
+
+@media all and (max-width: 500px) {
+  .header__logo {
+    width: 100px;
+    height: 20px;
+  }
+}
