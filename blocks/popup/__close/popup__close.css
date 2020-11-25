@@ -11,7 +11,7 @@
 }
 
 .popup__close:hover {
-  opacity: .6;
+  opacity: .4;
 }
 
 @media all and (max-width: 500px) {

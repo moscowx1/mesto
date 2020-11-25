@@ -2,8 +2,6 @@
   background-color: white;
   width: 430px;
   margin:auto;
-  display: flex;
-  flex-direction: column;
   z-index: 1;
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
