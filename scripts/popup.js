@@ -1,17 +1,44 @@
-let popup = document.querySelector(".popup");
-let popupTitle = popup.querySelector('.popup__title');
+const popup = document.querySelector(".popup");
+const popupTitle = popup.querySelector('.popup__title');
 
-let form = popup.querySelector("form");
+const form = popup.querySelector("form");
 
-let firstInput = popup.querySelector('input[name="firstInput"]')
-let secondInput = popup.querySelector('input[name="secondInput"]')
+const firstInput = popup.querySelector('input[name="firstInput"]')
+const secondInput = popup.querySelector('input[name="secondInput"]')
 
-let name = document.querySelector(".profile__name");
-let desc = document.querySelector(".profile__desc");
+const name = document.querySelector(".profile__name");
+const desc = document.querySelector(".profile__desc");
 
-let openEditProfileBtn = document.querySelector(".profile__edit-button");
-let openAddPicBtn = document.querySelector(".profile__add-button");
-let closeBtn = document.querySelector(".popup__close");
+const openEditProfileBtn = document.querySelector(".profile__edit-button");
+const openAddPicBtn = document.querySelector(".profile__add-button");
+const closeBtn = document.querySelector(".popup__close");
+
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
 
 let handleFunc = () => {};
 
@@ -33,6 +60,7 @@ const OpenEditProfileForm = () => {
   popupTitle.textContent = "Редактировать профиль";
   firstInput.value = name.textContent;
   secondInput.value = desc.textContent;
+
   handleFunc = HandleEditProfile;
   OpenPopup();
 }
@@ -44,25 +72,34 @@ const HandleEditProfile = () => {
 
 const OpenAddPicForm = () => {
   popupTitle.textContent = "Новое место";
+  firstInput.placeholder = "Название"
+  secondInput.placeholder = "Ссылка на картинку"
+
   handleFunc = HandleAddPic;
   OpenPopup();
 }
 
 const HandleAddPic = () => {
-  const name = firstInput.value;
-  const url = secondInput.value;
+   AddCard(firstInput.value, secondInput.value);
+}
 
-  let elem = document.querySelector("#element-template").content;
-  let newEl = elem.cloneNode(true);
+const AddCard = (name, link) => {
+  const elem = document.querySelector("#element-template").content;
+  const newEl = elem.cloneNode(true);
 
-  newEl.querySelector(".element__img").src = url;
+  newEl.querySelector(".element__img").src = link;
   newEl.querySelector(".element__img").alt = `Изображение ${name}`;
   newEl.querySelector(".element__name").textContent = name;
 
   document.querySelector(".elements").prepend(newEl);
 }
 
+const AddCards = () => {
+  initialCards.forEach(z => AddCard(z.name, z.link));
+}
+
 form.addEventListener("submit", Submit);
 openEditProfileBtn.addEventListener("click", OpenEditProfileForm);
 openAddPicBtn.addEventListener("click", OpenAddPicForm);
 closeBtn.addEventListener("click", HidePopup);
+window.addEventListener("load", AddCards);
