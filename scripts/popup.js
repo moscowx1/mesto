@@ -40,8 +40,6 @@ const initialCards = [
   }
 ];
 
-let handleFunc = () => {};
-
 const HidePopup = () => {
   popup.classList.remove("popup_opened");
 }
@@ -49,6 +47,8 @@ const HidePopup = () => {
 const OpenPopup = () => {
   popup.classList.add("popup_opened");
 }
+
+let handleFunc = () => {};
 
 const Submit = (evt) => {
   evt.preventDefault();
@@ -91,15 +91,24 @@ const AddCard = (name, link) => {
   newEl.querySelector(".element__img").alt = `Изображение ${name}`;
   newEl.querySelector(".element__name").textContent = name;
 
+  newEl.querySelector(".element__like-btn").addEventListener("click", (evt) =>  {
+    evt.target.classList.toggle("element__like-btn_active");
+  });
+
+  newEl.querySelector(".element__remove-btn").addEventListener("click", (evt) =>  {
+    evt.target.closest(".element").remove();
+  });
+
   document.querySelector(".elements").prepend(newEl);
 }
 
-const AddCards = () => {
+const InitCards = () => {
   initialCards.forEach(z => AddCard(z.name, z.link));
 }
+
 
 form.addEventListener("submit", Submit);
 openEditProfileBtn.addEventListener("click", OpenEditProfileForm);
 openAddPicBtn.addEventListener("click", OpenAddPicForm);
 closeBtn.addEventListener("click", HidePopup);
-window.addEventListener("load", AddCards);
+window.addEventListener("load", InitCards);

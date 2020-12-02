@@ -1,4 +1,4 @@
-.element__like-but {
+.element__like-btn {
   width: 30px;
   border: none;
   background-color: white;
@@ -7,6 +7,6 @@
   background-repeat: no-repeat;
 }
 
-.element__like-but:hover {
-  opacity: .6;
+.element__like-btn:hover {
+  opacity: .5;
 }
