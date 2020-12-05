@@ -1,17 +1,21 @@
-const popup = document.querySelector(".popup");
-const popupTitle = popup.querySelector('.popup__title');
+const popupForm = document.querySelector("#popup-form");
+const popupFormTitle = popupForm.querySelector('.popup__title');
 
-const form = popup.querySelector("form");
+const form = popupForm.querySelector("form");
 
-const firstInput = popup.querySelector('input[name="firstInput"]')
-const secondInput = popup.querySelector('input[name="secondInput"]')
+const firstInput = popupForm.querySelector('input[name="firstInput"]')
+const secondInput = popupForm.querySelector('input[name="secondInput"]')
 
 const name = document.querySelector(".profile__name");
 const desc = document.querySelector(".profile__desc");
 
+const popupImg = document.querySelector("#popup-img");
+
 const openEditProfileBtn = document.querySelector(".profile__edit-button");
 const openAddPicBtn = document.querySelector(".profile__add-button");
-const closeBtn = document.querySelector(".popup__close");
+
+const closeFormBtn = popupForm.querySelector(".popup__close");
+const closeImgBtn = popupImg.querySelector(".popup__close");
 
 const initialCards = [
   {
@@ -40,11 +44,11 @@ const initialCards = [
   }
 ];
 
-const HidePopup = () => {
-  popup.classList.remove("popup_opened");
+const HidePopup = (evt) => {
+  evt.target.closest(".popup").classList.remove("popup_opened");
 }
 
-const OpenPopup = () => {
+const OpenPopup = (popup) => {
   popup.classList.add("popup_opened");
 }
 
@@ -53,16 +57,23 @@ let handleFunc = () => {};
 const Submit = (evt) => {
   evt.preventDefault();
   handleFunc();
-  HidePopup();
+  HidePopup(evt);
 };
 
+const SetFormValues = (title, input1, input2) => {
+  popupFormTitle.textContent = title;
+  firstInput.value = input1;
+  secondInput.value = input2;
+
+  firstInput.placeholder = "";
+  secondInput.placeholder = "";
+}
+
 const OpenEditProfileForm = () => {
-  popupTitle.textContent = "Редактировать профиль";
-  firstInput.value = name.textContent;
-  secondInput.value = desc.textContent;
+  SetFormValues("Редактировать профиль", name.textContent, desc.textContent);
 
   handleFunc = HandleEditProfile;
-  OpenPopup();
+  OpenPopup(popupForm);
 }
 
 const HandleEditProfile = () => {
@@ -71,33 +82,56 @@ const HandleEditProfile = () => {
 }
 
 const OpenAddPicForm = () => {
-  popupTitle.textContent = "Новое место";
+  SetFormValues("Новое место", "", "");
   firstInput.placeholder = "Название"
   secondInput.placeholder = "Ссылка на картинку"
 
   handleFunc = HandleAddPic;
-  OpenPopup();
+  OpenPopup(popupForm);
 }
 
 const HandleAddPic = () => {
    AddCard(firstInput.value, secondInput.value);
 }
 
+const OpenImg = (evt) => {
+  const el = evt.target.closest(".element");
+
+  const src = el.querySelector(".element__img").src;
+  const alt = el.querySelector(".element__img").alt;
+  const caption = el.querySelector(".element__name").textContent;
+
+  popupImg.querySelector(".popup__img").src = src;
+  popupImg.querySelector(".popup__img").alt = alt;
+  popupImg.querySelector(".popup__caption").textContent = caption;
+
+  OpenPopup(popupImg);
+}
+
 const AddCard = (name, link) => {
+  if (!name || !link)
+    return;
+
+  const RemoveElement = (evt) => {
+    evt.target.closest(".element").remove();
+  }
+
   const elem = document.querySelector("#element-template").content;
   const newEl = elem.cloneNode(true);
 
-  newEl.querySelector(".element__img").src = link;
-  newEl.querySelector(".element__img").alt = `Изображение ${name}`;
+  const img = newEl.querySelector(".element__img")
+  img.src = link;
+  img.alt = `Изображение ${name}`;
+  img.addEventListener("click",  OpenImg);
+  img.addEventListener("error", RemoveElement);
+
   newEl.querySelector(".element__name").textContent = name;
 
   newEl.querySelector(".element__like-btn").addEventListener("click", (evt) =>  {
     evt.target.classList.toggle("element__like-btn_active");
   });
 
-  newEl.querySelector(".element__remove-btn").addEventListener("click", (evt) =>  {
-    evt.target.closest(".element").remove();
-  });
+  newEl.querySelector(".element__remove-btn").addEventListener("click", RemoveElement);
 
   document.querySelector(".elements").prepend(newEl);
 }
@@ -106,9 +140,11 @@ const InitCards = () => {
   initialCards.forEach(z => AddCard(z.name, z.link));
 }
 
-
 form.addEventListener("submit", Submit);
+
 openEditProfileBtn.addEventListener("click", OpenEditProfileForm);
 openAddPicBtn.addEventListener("click", OpenAddPicForm);
-closeBtn.addEventListener("click", HidePopup);
+closeFormBtn.addEventListener("click", HidePopup);
+closeImgBtn.addEventListener("click", HidePopup);
+
 window.addEventListener("load", InitCards);

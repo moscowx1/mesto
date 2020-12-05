@@ -1,6 +1,6 @@
 .element__name-wrapper {
   display: flex;
   padding-top: 25px;
-  margin: 0 20px 30px 20px;
+  margin: auto 20px 30px 20px;
   justify-content: space-between;
 }
