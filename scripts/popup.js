@@ -104,13 +104,11 @@ const OpenImg = (evt) => {
   const el = evt.target.closest(".element");
 
   const elImg = el.querySelector(".element__img");
-  const src = elImg.src;
-  const alt = elImg.alt;
   const caption = el.querySelector(".element__name").textContent;
 
   const popupImg = popupWithImg.querySelector(".popup__img");
-  popupImg.src = src;
-  popupImg.alt = alt;
+  popupImg.src = elImg.src;
+  popupImg.alt = elImg.alt;
 
   popupWithImg.querySelector(".popup__caption").textContent = caption;
 
