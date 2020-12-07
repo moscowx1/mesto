@@ -9,13 +9,15 @@ const secondInput = popupForm.querySelector('input[name="secondInput"]')
 const name = document.querySelector(".profile__name");
 const desc = document.querySelector(".profile__desc");
 
-const popupImg = document.querySelector("#popup-img");
+const popupWithImg = document.querySelector("#popup-img");
 
 const openEditProfileBtn = document.querySelector(".profile__edit-button");
 const openAddPicBtn = document.querySelector(".profile__add-button");
 
 const closeFormBtn = popupForm.querySelector(".popup__close");
-const closeImgBtn = popupImg.querySelector(".popup__close");
+const closeImgBtn = popupWithImg.querySelector(".popup__close");
+
+const elemTemplate = document.querySelector("#element-template").content;
 
 const initialCards = [
   {
@@ -45,7 +47,11 @@ const initialCards = [
 ];
 
 const HidePopup = (evt) => {
-  evt.target.closest(".popup").classList.remove("popup_opened");
+  const popup = evt.target.closest(".popup");
+  const duration = 300;
+
+  popup.animate([{opacity: 0}], {duration: duration});
+  setTimeout(() =>  popup.classList.remove("popup_opened"), duration);
 }
 
 const OpenPopup = (popup) => {
@@ -97,15 +103,18 @@ const HandleAddPic = () => {
 const OpenImg = (evt) => {
   const el = evt.target.closest(".element");
 
-  const src = el.querySelector(".element__img").src;
-  const alt = el.querySelector(".element__img").alt;
+  const elImg = el.querySelector(".element__img");
+  const src = elImg.src;
+  const alt = elImg.alt;
   const caption = el.querySelector(".element__name").textContent;
 
-  popupImg.querySelector(".popup__img").src = src;
-  popupImg.querySelector(".popup__img").alt = alt;
-  popupImg.querySelector(".popup__caption").textContent = caption;
+  const popupImg = popupWithImg.querySelector(".popup__img");
+  popupImg.src = src;
+  popupImg.alt = alt;
 
-  OpenPopup(popupImg);
+  popupWithImg.querySelector(".popup__caption").textContent = caption;
+
+  OpenPopup(popupWithImg);
 }
 
 const AddCard = (name, link) => {
@@ -116,8 +125,7 @@ const AddCard = (name, link) => {
     evt.target.closest(".element").remove();
   }
 
-  const elem = document.querySelector("#element-template").content;
-  const newEl = elem.cloneNode(true);
+  const newEl = elemTemplate.cloneNode(true);
 
   const img = newEl.querySelector(".element__img")
   img.src = link;

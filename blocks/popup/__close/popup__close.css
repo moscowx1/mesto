@@ -1,7 +1,7 @@
 .popup__close {
   position: absolute;
   left: 100%;
-  bottom: 100%;
+  bottom: calc(100% + 10px);
   width: 40px;
   height: 40px;
   background-image: url('../../../images/close.svg');
@@ -14,7 +14,7 @@
   opacity: .5;
 }
 
-@media all and (max-width: 300px) {
+@media all and (max-width: 400px) {
   .popup__close {
     left: calc(100% - 40px);
   }
