@@ -2,4 +2,6 @@
   max-width: 75vw;
   max-height: 75vh;
   margin: auto;
+  object-fit: fill;
+  object-position: center;
 }
