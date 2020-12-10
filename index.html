@@ -39,17 +39,19 @@
     <p class="footer__title">© 2020 Mesto Russia</p>
   </footer>
 
-  <div class="popup" id="popup-edit-profile">
+  <div class="popup popup_edit-profile">
     <div class="popup__container">
       <h2 class="popup__title">Редактировать профиль</h2>
       <form name="form"
             class="popup__form">
         <input type="text"
+               required
                name="name"
-               class="popup__input-text">
+               class="popup__input-text popup__form-name">
         <input type="text"
+               required
                name="desc"
-               class="popup__input-text">
+               class="popup__input-text popup__form-desc">
         <button type="submit"
                 class="popup__submit">Сохранить</button>
       </form>
@@ -58,19 +60,21 @@
     </div>
   </div>
 
-  <div class="popup" id="popup-add-pic">
+  <div class="popup popup_add-pic">
     <div class="popup__container">
       <h2 class="popup__title">Новое место</h2>
       <form name="form"
             class="popup__form">
         <input type="text"
+               required
                name="name"
                placeholder="Название"
-               class="popup__input-text">
-        <input type="text"
+               class="popup__input-text popup__img-name">
+        <input type="url"
+               required
                name="link"
                placeholder="Ссылка на картинку"
-               class="popup__input-text">
+               class="popup__input-text popup__img-link">
         <button type="submit"
                 class="popup__submit">Сохранить</button>
       </form>
@@ -79,12 +83,11 @@
     </div>
   </div>
 
-  <div class="popup" id="popup-img">
+  <div class="popup popup_img">
     <div class="popup__container popup__container_back-transparent">
-      <!-- валидатор яндекса требует значение для src и alt-->
       <img class="popup__img"
-           src="images/logo.svg"
-           alt="init">
+           src="#"
+           alt="#">
       <p class="popup__caption"></p>
       <button type="button"
               class="popup__close"></button>
@@ -94,10 +97,9 @@
 
 <template id="element-template">
   <div class="element">
-    <!-- валидатор яндекса требует значение для src и alt-->
     <img class="element__img"
-         src="/images/logo.svg"
-         alt="init">
+         src="#"
+         alt="#">
     <div class="element__name-wrapper">
       <h2 class="element__name"></h2>
       <button type="button"
@@ -107,6 +109,7 @@
   </div>
 </template>
 
+<script src="scripts/initialElements.js"></script>
 <script src="scripts/popup.js"></script>
 </body>
 </html>
