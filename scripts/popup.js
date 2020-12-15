@@ -27,10 +27,8 @@ const cardTemplate = document.querySelector(".element-template").content;
 
 const hidePopup = (evt) => {
   const popup = evt.target.closest(".popup");
-  const duration = 300;
 
-  popup.animate([{opacity: 0}], {duration: duration});
-  setTimeout(() =>  popup.classList.remove("popup_opened"), duration);
+  popup.classList.remove("popup_opened");
 };
 
 const openEditProfilePopup = () => {
@@ -74,7 +72,7 @@ const openImg = (evt) => {
 
   popupImg.querySelector(".popup__caption").textContent = caption;
 
-  openPopup(popupImg);
+  popupImg.classList.add("popup_opened");
 };
 
 const removeElement = (evt) => {
