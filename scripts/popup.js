@@ -14,6 +14,9 @@ const imgLinkInput = popupAddPic.querySelector(".popup__img-link");
 const profileName = document.querySelector(".profile__name");
 const profileDesc = document.querySelector(".profile__desc");
 
+const popupImgCaption =  popupImg.querySelector(".popup__caption");
+const popupImgPicture =  popupImg.querySelector(".popup__img")
+
 const openEditProfileBtn = document.querySelector(".profile__edit-button");
 const openAddPicBtn = document.querySelector(".profile__add-button");
 
@@ -31,14 +34,15 @@ const hidePopup = (evt) => {
   popup.classList.remove("popup_opened");
 };
 
-const openEditProfilePopup = () => {
-  popupEditProfile.classList.add("popup_opened");
-  profileNameInput.value = profileName.textContent;
-  profileDescInput.value = profileDesc.textContent;
+const openPopup = (popup) => {
+  popup.classList.add("popup_opened");
 };
 
-const openAddPicPopup = () => {
-  popupAddPic.classList.add("popup_opened");
+const openEditProfilePopup = () => {
+  profileNameInput.value = profileName.textContent;
+  profileDescInput.value = profileDesc.textContent;
+
+  openPopup(popupEditProfile);
 }
 
 const submitEditProfile = (evt) => {
@@ -66,11 +70,10 @@ const openImg = (evt) => {
   const elImg = el.querySelector(".element__img");
   const caption = el.querySelector(".element__name").textContent;
 
-  const img = popupImg.querySelector(".popup__img");
-  img.src = elImg.src;
-  img.alt = elImg.alt;
+  popupImgPicture.src = elImg.src;
+  popupImgPicture.alt = elImg.alt;
 
-  popupImg.querySelector(".popup__caption").textContent = caption;
+  popupImgCaption.textContent = caption;
 
   popupImg.classList.add("popup_opened");
 };
@@ -109,8 +112,8 @@ const initElements = () => {
   elements.prepend(...newElems);
 };
 
-openEditProfileBtn.addEventListener("click", openEditProfilePopup);
-openAddPicBtn.addEventListener("click", openAddPicPopup);
+openEditProfileBtn.addEventListener("click",  openEditProfilePopup);
+openAddPicBtn.addEventListener("click", () => openPopup(popupAddPic));
 
 popupEditProfile.addEventListener("submit", submitEditProfile);
 popupAddPic.addEventListener("submit", submitAddPic);
