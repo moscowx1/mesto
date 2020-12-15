@@ -2,6 +2,9 @@ const popupEditProfile = document.querySelector(".popup_edit-profile");
 const popupAddPic = document.querySelector(".popup_add-pic");
 const popupImg = document.querySelector(".popup_img");
 
+const formEditProfile = popupEditProfile.querySelector(".popup__form");
+const formAddPic = popupEditProfile.querySelector(".popup__form");
+
 const profileNameInput = popupEditProfile.querySelector(".popup__profile-name");
 const profileDescInput = popupEditProfile.querySelector(".popup__profile-desc");
 
@@ -44,6 +47,8 @@ const submitEditProfile = (evt) => {
   evt.preventDefault();
   profileName.textContent = profileNameInput.value;
   profileDesc.textContent = profileDescInput.value;
+
+  formEditProfile.reset();
   hidePopup(evt);
 };
 
@@ -53,6 +58,7 @@ const submitAddPic = (evt) => {
   const newElem = createNewElement(imgNameInput.value, imgLinkInput.value);
   elements.prepend(newElem);
 
+  formAddPic.reset();
   hidePopup(evt);
 };
 
