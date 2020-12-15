@@ -2,8 +2,8 @@ const popupEditProfile = document.querySelector(".popup_edit-profile");
 const popupAddPic = document.querySelector(".popup_add-pic");
 const popupImg = document.querySelector(".popup_img");
 
-const profileNameInput = popupEditProfile.querySelector(".popup__form-name");
-const profileDescInput = popupEditProfile.querySelector(".popup__form-desc");
+const profileNameInput = popupEditProfile.querySelector(".popup__profile-name");
+const profileDescInput = popupEditProfile.querySelector(".popup__profile-desc");
 
 const imgNameInput = popupAddPic.querySelector(".popup__img-name");
 const imgLinkInput = popupAddPic.querySelector(".popup__img-link");
@@ -20,7 +20,7 @@ const closePopupImg = popupImg.querySelector(".popup__close");
 
 const elements = document.querySelector(".elements");
 
-const cardTemplate = document.querySelector("#element-template").content;
+const cardTemplate = document.querySelector(".element-template").content;
 
 const hidePopup = (evt) => {
   const popup = evt.target.closest(".popup");
@@ -30,9 +30,15 @@ const hidePopup = (evt) => {
   setTimeout(() =>  popup.classList.remove("popup_opened"), duration);
 };
 
-const openPopup = (popup) => {
-  popup.classList.add("popup_opened");
+const openEditProfilePopup = () => {
+  popupEditProfile.classList.add("popup_opened");
+  profileNameInput.value = profileName.textContent;
+  profileDescInput.value = profileDesc.textContent;
 };
+
+const openAddPicPopup = () => {
+  popupAddPic.classList.add("popup_opened");
+}
 
 const submitEditProfile = (evt) => {
   evt.preventDefault();
@@ -43,7 +49,10 @@ const submitEditProfile = (evt) => {
 
 const submitAddPic = (evt) => {
   evt.preventDefault();
-  addCard(imgNameInput.value, imgLinkInput.value);
+
+  const newElem = createNewElement(imgNameInput.value, imgLinkInput.value);
+  elements.prepend(newElem);
+
   hidePopup(evt);
 };
 
@@ -96,8 +105,8 @@ const initElements = () => {
   elements.prepend(...newElems);
 };
 
-openEditProfileBtn.addEventListener("click", openPopup(popupEditProfile));
-openAddPicBtn.addEventListener("click", openPopup(popupAddPic));
+openEditProfileBtn.addEventListener("click", openEditProfilePopup);
+openAddPicBtn.addEventListener("click", openAddPicPopup);
 
 popupEditProfile.addEventListener("submit", submitEditProfile);
 popupAddPic.addEventListener("submit", submitAddPic);
