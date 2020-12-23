@@ -9,15 +9,3 @@
   height: 100%;
   transition: visibility 0s, opacity 0.5s linear;
 }
-
-.popup:before {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  opacity: .5;
-  width: 100%;
-  height: 100%;
-  background-color: black;
-}

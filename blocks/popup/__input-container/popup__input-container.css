@@ -1,0 +1,9 @@
+.popup__input-container {
+  margin: 0 36px 30px 36px;
+}
+
+@media all and (max-width: 500px) {
+  popup__input-container {
+    margin-left: 20px;
+  }
+}

@@ -10,11 +10,11 @@
 </head>
 <body class="body">
 <div class="page">
-<header class="header">
-  <img src="images/logo.svg"
-       class="header__logo"
-       alt="Логотип">
-</header>
+  <header class="header">
+    <img src="images/logo.svg"
+         class="header__logo"
+         alt="Логотип">
+  </header>
   <main>
     <section class="profile">
       <img src="images/avatar.png"
@@ -24,7 +24,7 @@
         <div class="profile__name-wrapper">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
           <button type="button"
-                 class="profile__edit-button"></button>
+                  class="profile__edit-button"></button>
         </div>
         <p class="profile__desc">Исследователь океана</p>
       </div>
@@ -32,28 +32,43 @@
               class="profile__add-button"></button>
     </section>
 
-     <section class="elements">
-     </section>
+    <section class="elements">
+    </section>
   </main>
   <footer class="footer">
     <p class="footer__title">© 2020 Mesto Russia</p>
   </footer>
 
   <div class="popup popup_edit-profile">
+    <span class="popup__back"></span>
     <div class="popup__container">
       <h2 class="popup__title">Редактировать профиль</h2>
       <form name="form-profile"
-            class="popup__form">
-        <input type="text"
-               required
-               name="profile-name"
-               class="popup__input-text popup__profile-name">
-        <input type="text"
-               required
-               name="profile-desc"
-               class="popup__input-text popup__profile-desc">
+            class="popup__form popup_auto-filled-inputs"
+            novalidate>
+        <div class="popup__input-container">
+          <input type="text"
+                 required
+                 name="profile-name"
+                 class="popup__input popup__profile-name"
+                 id="name-input"
+                 minlength="2"
+                 maxlength="40">
+          <span class="popup__error name-input-error"></span>
+        </div>
+        <div class="popup__input-container">
+          <input type="text"
+                 required
+                 name="profile-desc"
+                 class="popup__input popup__profile-desc"
+                 id="desc-input"
+                 minlength="2"
+                 maxlength="200">
+          <span class="popup__error desc-input-error"></span>
+        </div>
         <button type="submit"
-                class="popup__submit">Сохранить</button>
+                class="popup__submit">Сохранить
+        </button>
       </form>
       <button type="button"
               class="popup__close"></button>
@@ -61,22 +76,33 @@
   </div>
 
   <div class="popup popup_add-pic">
+    <span class="popup__back"></span>
     <div class="popup__container">
       <h2 class="popup__title">Новое место</h2>
       <form name="form-add-pic"
-            class="popup__form">
-        <input type="text"
-               required
-               name="pic-name"
-               placeholder="Название"
-               class="popup__input-text popup__img-name">
-        <input type="url"
-               required
-               name="pic-link"
-               placeholder="Ссылка на картинку"
-               class="popup__input-text popup__img-link">
+            class="popup__form"
+            novalidate>
+        <div class="popup__input-container">
+          <input type="text"
+                 required
+                 name="pic-name"
+                 id="pic-name-input"
+                 placeholder="Название"
+                 class="popup__input popup__img-name">
+          <span class="popup__error pic-name-input-error"></span>
+        </div>
+        <div class="popup__input-container">
+          <input type="url"
+                 required
+                 name="pic-link"
+                 id="pic-link-input"
+                 placeholder="Ссылка на картинку"
+                 class="popup__input popup__img-link">
+          <span class="popup__error pic-link-input-error"></span>
+        </div>
         <button type="submit"
-                class="popup__submit">Сохранить</button>
+                class="popup__submit">Сохранить
+        </button>
       </form>
       <button type="button"
               class="popup__close"></button>
@@ -84,6 +110,7 @@
   </div>
 
   <div class="popup popup_img">
+    <span class="popup__back"></span>
     <div class="popup__container popup__container_back-transparent">
       <img class="popup__img"
            src="#"
@@ -111,6 +138,7 @@
 </template>
 
 <script src="scripts/initialElements.js"></script>
+<script src="scripts/validation.js"></script>
 <script src="scripts/popup.js"></script>
 </body>
 </html>

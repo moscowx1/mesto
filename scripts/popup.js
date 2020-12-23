@@ -3,7 +3,7 @@ const popupAddPic = document.querySelector(".popup_add-pic");
 const popupImg = document.querySelector(".popup_img");
 
 const formEditProfile = popupEditProfile.querySelector(".popup__form");
-const formAddPic = popupEditProfile.querySelector(".popup__form");
+const formAddPic = popupAddPic.querySelector(".popup__form");
 
 const profileNameInput = popupEditProfile.querySelector(".popup__profile-name");
 const profileDescInput = popupEditProfile.querySelector(".popup__profile-desc");
@@ -24,14 +24,26 @@ const closeEditProfileBtn = popupEditProfile.querySelector(".popup__close");
 const closeAddPicBtn = popupAddPic.querySelector(".popup__close");
 const closePopupImg = popupImg.querySelector(".popup__close");
 
+const editProfileBack = popupEditProfile.querySelector(".popup__back");
+const addPicBack = popupAddPic.querySelector(".popup__back");
+const imgBack = popupImg.querySelector(".popup__back");
+
 const elements = document.querySelector(".elements");
 
 const cardTemplate = document.querySelector(".element-template").content;
 
-const hidePopup = (evt) => {
+const hidePopupFromEvent = (evt) => {
   const popup = evt.target.closest(".popup");
+  hidePopup(popup);
+};
 
+const hidePopup = (popup) => {
   popup.classList.remove("popup_opened");
+
+  if(popup.classList.contains("popup_edit-profile"))
+    formEditProfile.reset();
+  else if(popup.classList.contains("popup_add-pic"))
+    formAddPic.reset();
 };
 
 const openPopup = (popup) => {
@@ -50,9 +62,15 @@ const submitEditProfile = (evt) => {
   profileName.textContent = profileNameInput.value;
   profileDesc.textContent = profileDescInput.value;
 
-  formEditProfile.reset();
-  hidePopup(evt);
+  hidePopup(popupEditProfile);
 };
+
+const HandleKey = (evt) => {
+  if(evt.key === "Escape"){
+    hidePopup(popupAddPic);
+    hidePopup(popupEditProfile);
+  }
+}
 
 const submitAddPic = (evt) => {
   evt.preventDefault();
@@ -61,7 +79,7 @@ const submitAddPic = (evt) => {
   elements.prepend(newElem);
 
   formAddPic.reset();
-  hidePopup(evt);
+  hidePopup(popupAddPic);
 };
 
 const openImg = (evt) => {
@@ -118,8 +136,13 @@ openAddPicBtn.addEventListener("click", () => openPopup(popupAddPic));
 popupEditProfile.addEventListener("submit", submitEditProfile);
 popupAddPic.addEventListener("submit", submitAddPic);
 
-closeEditProfileBtn.addEventListener("click", hidePopup);
-closeAddPicBtn.addEventListener("click", hidePopup);
-closePopupImg.addEventListener("click", hidePopup);
+closeEditProfileBtn.addEventListener("click", hidePopupFromEvent);
+closeAddPicBtn.addEventListener("click", hidePopupFromEvent);
+closePopupImg.addEventListener("click", hidePopupFromEvent);
+
+editProfileBack.addEventListener("click", hidePopupFromEvent);
+addPicBack.addEventListener("click", hidePopupFromEvent);
+imgBack.addEventListener("click", hidePopupFromEvent);
 
 window.addEventListener("load", initElements);
+window.addEventListener("keydown", HandleKey);

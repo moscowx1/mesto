@@ -10,7 +10,7 @@
   transition: opacity .3s;
 }
 
-.popup__submit:hover {
+.popup__submit:hover:enabled {
   opacity: .8;
   cursor: pointer;
 }
