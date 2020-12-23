@@ -5,7 +5,7 @@ const validationSelector = {
   inactiveButtonClass: 'popup__submit_disabled',
   inputErrorClass: 'popup__input_type-error',
   errorClass: 'popup__error_visible',
-  popupAutoFilledInputs: 'popup_autofilled-inputs'
+  popupAutoFilledInputs: 'popup__form_autofilled-inputs'
 };
 
 const formOpenedEvent = new Event("formOpened");
