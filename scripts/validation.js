@@ -8,8 +8,6 @@ const validationSelector = {
   popupAutoFilledInputs: 'popup__form_autofilled-inputs'
 };
 
-const formOpenedEvent = new Event("formOpened");
-
 const showInputError = (form, input, errorMsg, selector) => {
   const errorElem = form.querySelector(`.${input.id}-error`);
   errorElem.textContent = errorMsg;
