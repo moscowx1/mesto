@@ -42,6 +42,8 @@ const hidePopupFromEvent = (evt) => {
 const hidePopup = (popup) => {
   popup.classList.remove("popup_opened");
 
+  window.removeEventListener("keydown", hidePopupsOnEsc);
+
   if(popup.classList.contains("popup_edit-profile"))
     formEditProfile.reset();
   else if(popup.classList.contains("popup_add-pic"))
@@ -49,11 +51,8 @@ const hidePopup = (popup) => {
 };
 
 const hidePopupsOnEsc = (evt) => {
-  if(evt.key !== "Escape")
-    return;
-
-  hidePopup(openedPopup);
-  window.removeEventListener("keydown", hidePopupsOnEsc);
+  if(evt.key === "Escape")
+    hidePopup(openedPopup);
 }
 
 const openPopup = (popup) => {
@@ -88,16 +87,10 @@ const submitAddPic = (evt) => {
   hidePopup(popupAddPic);
 };
 
-const openImg = (evt) => {
-  const el = evt.target.closest(".element");
-
-  const elImg = el.querySelector(".element__img");
-  const caption = el.querySelector(".element__name").textContent;
-
-  popupImgPicture.src = elImg.src;
-  popupImgPicture.alt = elImg.alt;
-
-  popupImgCaption.textContent = caption;
+const openImg = (name, link) => {
+  popupImgCaption.textContent = name;
+  popupImgPicture.alt = name;
+  popupImgPicture.src = link;
 
   openPopup(popupImg);
 };
@@ -121,7 +114,7 @@ const createNewElement = (name, link) => {
   const img = element.querySelector(".element__img");
   img.src = link;
   img.alt = `Изображение ${name}`;
-  img.addEventListener("click",  openImg);
+  img.addEventListener("click",  () => openImg(name, link));
   img.addEventListener("error", handleElementAddImgError);
 
   element.querySelector(".element__name").textContent = name;
