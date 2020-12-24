@@ -32,6 +32,8 @@ const elements = document.querySelector(".elements");
 
 const cardTemplate = document.querySelector(".element-template").content;
 
+let openedPopup;
+
 const hidePopupFromEvent = (evt) => {
   const popup = evt.target.closest(".popup");
   hidePopup(popup);
@@ -46,8 +48,19 @@ const hidePopup = (popup) => {
     formAddPic.reset();
 };
 
+const hidePopupsOnEsc = (evt) => {
+  if(evt.key !== "Escape")
+    return;
+
+  hidePopup(openedPopup);
+  window.removeEventListener("keydown", hidePopupsOnEsc);
+}
+
 const openPopup = (popup) => {
   popup.classList.add("popup_opened");
+  openedPopup = popup;
+
+  window.addEventListener("keydown", hidePopupsOnEsc);
 };
 
 const openEditProfilePopup = () => {
@@ -64,13 +77,6 @@ const submitEditProfile = (evt) => {
 
   hidePopup(popupEditProfile);
 };
-
-const HandleKey = (evt) => {
-  if(evt.key === "Escape"){
-    hidePopup(popupAddPic);
-    hidePopup(popupEditProfile);
-  }
-}
 
 const submitAddPic = (evt) => {
   evt.preventDefault();
@@ -93,7 +99,7 @@ const openImg = (evt) => {
 
   popupImgCaption.textContent = caption;
 
-  popupImg.classList.add("popup_opened");
+  openPopup(popupImg);
 };
 
 const removeElement = (evt) => {
@@ -145,4 +151,3 @@ addPicBack.addEventListener("click", hidePopupFromEvent);
 imgBack.addEventListener("click", hidePopupFromEvent);
 
 window.addEventListener("load", initElements);
-window.addEventListener("keydown", HandleKey);
