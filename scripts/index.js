@@ -1,3 +1,5 @@
+const popups = Array.from(document.querySelectorAll(".popup"));
+
 const popupEditProfile = document.querySelector(".popup_edit-profile");
 const popupAddPic = document.querySelector(".popup_add-pic");
 const popupImg = document.querySelector(".popup_img");
@@ -20,34 +22,16 @@ const popupImgPicture =  popupImg.querySelector(".popup__img")
 const openEditProfileBtn = document.querySelector(".profile__edit-button");
 const openAddPicBtn = document.querySelector(".profile__add-button");
 
-const closeEditProfileBtn = popupEditProfile.querySelector(".popup__close");
-const closeAddPicBtn = popupAddPic.querySelector(".popup__close");
-const closePopupImg = popupImg.querySelector(".popup__close");
-
-const editProfileBack = popupEditProfile.querySelector(".popup__back");
-const addPicBack = popupAddPic.querySelector(".popup__back");
-const imgBack = popupImg.querySelector(".popup__back");
-
 const elements = document.querySelector(".elements");
 
 const cardTemplate = document.querySelector(".element-template").content;
 
 let openedPopup;
 
-const hidePopupFromEvent = (evt) => {
-  const popup = evt.target.closest(".popup");
-  hidePopup(popup);
-};
-
 const hidePopup = (popup) => {
   popup.classList.remove("popup_opened");
 
   window.removeEventListener("keydown", hidePopupsOnEsc);
-
-  if(popup.classList.contains("popup_edit-profile"))
-    formEditProfile.reset();
-  else if(popup.classList.contains("popup_add-pic"))
-    formAddPic.reset();
 };
 
 const hidePopupsOnEsc = (evt) => {
@@ -63,11 +47,19 @@ const openPopup = (popup) => {
 };
 
 const openEditProfilePopup = () => {
+  formEditProfile.reset();
+
   profileNameInput.value = profileName.textContent;
   profileDescInput.value = profileDesc.textContent;
 
   openPopup(popupEditProfile);
 }
+
+const openAddPicPopup = () => {
+  formAddPic.reset();
+
+  openPopup(popupAddPic);
+};
 
 const submitEditProfile = (evt) => {
   evt.preventDefault();
@@ -130,17 +122,16 @@ const initElements = () => {
 };
 
 openEditProfileBtn.addEventListener("click",  openEditProfilePopup);
-openAddPicBtn.addEventListener("click", () => openPopup(popupAddPic));
+openAddPicBtn.addEventListener("click",  openAddPicPopup);
 
 popupEditProfile.addEventListener("submit", submitEditProfile);
 popupAddPic.addEventListener("submit", submitAddPic);
 
-closeEditProfileBtn.addEventListener("click", hidePopupFromEvent);
-closeAddPicBtn.addEventListener("click", hidePopupFromEvent);
-closePopupImg.addEventListener("click", hidePopupFromEvent);
-
-editProfileBack.addEventListener("click", hidePopupFromEvent);
-addPicBack.addEventListener("click", hidePopupFromEvent);
-imgBack.addEventListener("click", hidePopupFromEvent);
+popups.forEach(popup =>
+  popup.addEventListener("click", (evt) => {
+    if(evt.target.classList.contains("popup__back") ||
+       evt.target.classList.contains("popup__close"))
+        hidePopup(popup);
+}));
 
 window.addEventListener("load", initElements);
