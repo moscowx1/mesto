@@ -1,11 +1,11 @@
 const validationSelector = {
   formSelector: '.popup__form',
+  formAutoFilledInputs: 'popup__form_autofilled-inputs',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__submit',
   inactiveButtonClass: 'popup__submit_disabled',
   inputErrorClass: 'popup__input_type-error',
-  errorClass: 'popup__error_visible',
-  popupAutoFilledInputs: 'popup__form_autofilled-inputs'
+  errorClass: 'popup__error_visible'
 };
 
 const showInputError = (form, input, errorMsg, selector) => {
@@ -53,7 +53,7 @@ const toggleBtnState = (inputs, btn, inactiveBtnClass) => {
 const setEventListeners = (form, selector) => {
   const inputs = Array.from(form.querySelectorAll(selector.inputSelector));
   const submitBtn = form.querySelector(selector.submitButtonSelector);
-  const autoFilledInputs = form.classList.contains(selector.autoFilledInputs);
+  const autoFilledInputs = form.classList.contains(selector.formAutoFilledInputs);
 
   if(!autoFilledInputs)
     toggleBtnState(inputs, submitBtn, selector.inactiveButtonClass);
