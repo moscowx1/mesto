@@ -1,4 +1,4 @@
-const initialElements = [
+export const initialCardsData = [
   {
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -24,3 +24,13 @@ const initialElements = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
+
+export const cardSelector = {
+  templateSelector: ".element-template",
+  cardSelector: ".element",
+  likeBtnActiveClass: "element__like-btn_active",
+  imgSelector: ".element__img",
+  likeBtnSelector: ".element__like-btn",
+  removeBtnSelector: ".element__remove-btn",
+  nameSelector: ".element__name"
+};

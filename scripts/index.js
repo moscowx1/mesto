@@ -1,3 +1,8 @@
+import { Card } from "./Card.js";
+import {cardSelector, initialCardsData} from "./initialData.js";
+
+const cardErrorMsg = "Возникла ошибка при добавлении нового места";
+
 const popups = Array.from(document.querySelectorAll(".popup"));
 
 const popupEditProfile = document.querySelector(".popup_edit-profile");
@@ -17,14 +22,12 @@ const profileName = document.querySelector(".profile__name");
 const profileDesc = document.querySelector(".profile__desc");
 
 const popupImgCaption =  popupImg.querySelector(".popup__caption");
-const popupImgPicture =  popupImg.querySelector(".popup__img")
+const popupImgPicture =  popupImg.querySelector(".popup__img");
 
 const openEditProfileBtn = document.querySelector(".profile__edit-button");
 const openAddPicBtn = document.querySelector(".profile__add-button");
 
 const elements = document.querySelector(".elements");
-
-const cardTemplate = document.querySelector(".element-template").content;
 
 let openedPopup;
 
@@ -72,53 +75,39 @@ const submitEditProfile = (evt) => {
 const submitAddPic = (evt) => {
   evt.preventDefault();
 
-  const newElem = createNewElement(imgNameInput.value, imgLinkInput.value);
-  elements.prepend(newElem);
+  const initData = {
+    name: imgNameInput.value,
+    link: imgLinkInput.value
+  };
+
+  const card = new Card(getCardData(initData), cardSelector);
+  elements.prepend(card.getCard());
 
   formAddPic.reset();
   hidePopup(popupAddPic);
 };
 
-const openImg = (name, link) => {
-  popupImgCaption.textContent = name;
-  popupImgPicture.alt = name;
-  popupImgPicture.src = link;
+// const openImg = (name, link) => {
+//   popupImgCaption.textContent = name;
+//   popupImgPicture.alt = name;
+//   popupImgPicture.src = link;
 
-  openPopup(popupImg);
+//   openPopup(popupImg);
+// };
+
+const getCardData = (initData) => {
+  return {
+    name: initData.name,
+    link: initData.link,
+    errorMsg: cardErrorMsg
+  };
 };
 
-const removeElement = (evt) => {
-  evt.target.closest(".element").remove();
-};
+const initCards = () => {
+  const cards = initialCardsData.map(cardData =>
+    new Card(getCardData(cardData), cardSelector));
 
-const handleElementAddImgError = (evt) => {
-  alert("Возникла ошибка при добавлении нового места");
-  removeElement(evt);
-};
-
-const likeElement = (evt) => {
-  evt.target.classList.toggle("element__like-btn_active");
-};
-
-const createNewElement = (name, link) => {
-  const element = cardTemplate.cloneNode(true);
-
-  const img = element.querySelector(".element__img");
-  img.src = link;
-  img.alt = `Изображение ${name}`;
-  img.addEventListener("click",  () => openImg(name, link));
-  img.addEventListener("error", handleElementAddImgError);
-
-  element.querySelector(".element__name").textContent = name;
-  element.querySelector(".element__like-btn").addEventListener("click", likeElement);
-  element.querySelector(".element__remove-btn").addEventListener("click", removeElement);
-
-  return element;
-};
-
-const initElements = () => {
-  const newElems = initialElements.map(elem => createNewElement(elem.name, elem.link));
-  elements.prepend(...newElems);
+  elements.prepend(...cards.map(card => card.getCard()));
 };
 
 openEditProfileBtn.addEventListener("click",  openEditProfilePopup);
@@ -134,4 +123,4 @@ popups.forEach(popup =>
         hidePopup(popup);
 }));
 
-window.addEventListener("load", initElements);
+window.addEventListener("load", initCards);
