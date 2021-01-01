@@ -1,9 +1,10 @@
 export  class Card {
-  constructor(data, selector) {
+  constructor(data, popup, selector) {
     this._name = data.name;
     this._link = data.link;
     this._errorMsg = data.errorMsg;
 
+    this._popup = popup;
     this._selector = selector;
   }
 
@@ -40,7 +41,7 @@ export  class Card {
   };
 
   _setEventListeners() {
-    //this._img.addEventListener("click", () => openImg(this._name, this._link));~
+    this._img.addEventListener("click", () => this._popup.openPopup(this._name, this._link));
     this._img.addEventListener("error", this._handleErrorImg.bind(this));
 
     this._likeBtn.addEventListener("click", this._likeCard.bind(this));

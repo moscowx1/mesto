@@ -1,5 +1,8 @@
 import { Card } from "./Card.js";
-import {cardSelector, initialCardsData} from "./initialData.js";
+import {cardSelector, initialCardsData, picturePopupSelector} from "./initialData.js";
+import { PicturePopup} from "./Popups/PicturePopup.js";
+
+const picturePopup = new PicturePopup(picturePopupSelector);
 
 const cardErrorMsg = "Возникла ошибка при добавлении нового места";
 
@@ -7,7 +10,6 @@ const popups = Array.from(document.querySelectorAll(".popup"));
 
 const popupEditProfile = document.querySelector(".popup_edit-profile");
 const popupAddPic = document.querySelector(".popup_add-pic");
-const popupImg = document.querySelector(".popup_img");
 
 const formEditProfile = popupEditProfile.querySelector(".popup__form");
 const formAddPic = popupAddPic.querySelector(".popup__form");
@@ -20,9 +22,6 @@ const imgLinkInput = popupAddPic.querySelector(".popup__img-link");
 
 const profileName = document.querySelector(".profile__name");
 const profileDesc = document.querySelector(".profile__desc");
-
-const popupImgCaption =  popupImg.querySelector(".popup__caption");
-const popupImgPicture =  popupImg.querySelector(".popup__img");
 
 const openEditProfileBtn = document.querySelector(".profile__edit-button");
 const openAddPicBtn = document.querySelector(".profile__add-button");
@@ -80,20 +79,12 @@ const submitAddPic = (evt) => {
     link: imgLinkInput.value
   };
 
-  const card = new Card(getCardData(initData), cardSelector);
+  const card = new Card(getCardData(initData), picturePopup, cardSelector);
   elements.prepend(card.getCard());
 
   formAddPic.reset();
   hidePopup(popupAddPic);
 };
-
-// const openImg = (name, link) => {
-//   popupImgCaption.textContent = name;
-//   popupImgPicture.alt = name;
-//   popupImgPicture.src = link;
-
-//   openPopup(popupImg);
-// };
 
 const getCardData = (initData) => {
   return {
@@ -105,7 +96,7 @@ const getCardData = (initData) => {
 
 const initCards = () => {
   const cards = initialCardsData.map(cardData =>
-    new Card(getCardData(cardData), cardSelector));
+    new Card(getCardData(cardData), picturePopup, cardSelector));
 
   elements.prepend(...cards.map(card => card.getCard()));
 };
