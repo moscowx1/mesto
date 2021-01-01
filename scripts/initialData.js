@@ -43,3 +43,30 @@ export const picturePopupSelector = {
   closeBtnClass: "popup__close",
   backgroundClass: "popup__back"
 }
+
+export const cardErrorMsg = "Возникла ошибка при добавлении нового места";
+
+export const addPicPopupSelector = {
+  popupSelector: ".popup_add-pic",
+  popupOpenedClass: "popup_opened",
+  closeBtnClass: "popup__close",
+  backgroundClass: "popup__back",
+  formSelector: ".popup__form",
+  nameSelector: ".popup__img-name",
+  linkSelector: ".popup__img-link",
+  openBtnSelector: ".profile__add-button",
+  cardsSelector: ".elements"
+}
+
+export const editProfilePopupSelector = {
+  popupSelector: ".popup_edit-profile",
+  popupOpenedClass: "popup_opened",
+  closeBtnClass: "popup__close",
+  backgroundClass: "popup__back",
+  formSelector: ".popup__form",
+  openBtnSelector: ".profile__edit-button",
+  nameInputSelector: ".popup__profile-name",
+  descriptionInputSelector: ".popup__profile-desc",
+  nameSelector: ".profile__name",
+  descriptionSelector: ".profile__desc"
+}

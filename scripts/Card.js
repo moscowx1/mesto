@@ -1,8 +1,11 @@
-export  class Card {
+import { PicturePopup } from "./Popups/PicturePopup.js";
+import { cardErrorMsg} from "./initialData.js";
+
+export class Card {
   constructor(data, popup, selector) {
     this._name = data.name;
     this._link = data.link;
-    this._errorMsg = data.errorMsg;
+    this._errorMsg = cardErrorMsg;
 
     this._popup = popup;
     this._selector = selector;
