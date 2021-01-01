@@ -1,7 +1,10 @@
-import { Card } from "./Card.js";
-import {cardSelector, initialCardsData} from "./initialData.js";
+import { Card} from "./Card.js";
+import { cardSelector,
+         initialCardsData} from "./cardData.js";
 
-import { editProfilePopupSelector, picturePopupSelector, addPicPopupSelector} from "./initialData.js";
+import { editProfilePopupSelector,
+         picturePopupSelector,
+         addPicPopupSelector} from "./Popups/popupSelectors.js";
 
 import { PicturePopup} from "./Popups/PicturePopup.js";
 import { AddPicPopup} from "./Popups/AddPicPopup.js";

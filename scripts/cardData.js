@@ -25,6 +25,8 @@ export const initialCardsData = [
   }
 ];
 
+export const cardErrorMsg = "Возникла ошибка при добавлении нового места";
+
 export const cardSelector = {
   templateSelector: ".element-template",
   cardSelector: ".element",
@@ -34,39 +36,3 @@ export const cardSelector = {
   likeBtnActiveClass: "element__like-btn_active",
   removeBtnSelector: ".element__remove-btn"
 };
-
-export const picturePopupSelector = {
-  popupSelector: ".popup_img",
-  popupOpenedClass: "popup_opened",
-  imgSelector: ".popup__img",
-  captionSelector: ".popup__caption",
-  closeBtnClass: "popup__close",
-  backgroundClass: "popup__back"
-}
-
-export const cardErrorMsg = "Возникла ошибка при добавлении нового места";
-
-export const addPicPopupSelector = {
-  popupSelector: ".popup_add-pic",
-  popupOpenedClass: "popup_opened",
-  closeBtnClass: "popup__close",
-  backgroundClass: "popup__back",
-  formSelector: ".popup__form",
-  nameSelector: ".popup__img-name",
-  linkSelector: ".popup__img-link",
-  openBtnSelector: ".profile__add-button",
-  cardsSelector: ".elements"
-}
-
-export const editProfilePopupSelector = {
-  popupSelector: ".popup_edit-profile",
-  popupOpenedClass: "popup_opened",
-  closeBtnClass: "popup__close",
-  backgroundClass: "popup__back",
-  formSelector: ".popup__form",
-  openBtnSelector: ".profile__edit-button",
-  nameInputSelector: ".popup__profile-name",
-  descriptionInputSelector: ".popup__profile-desc",
-  nameSelector: ".profile__name",
-  descriptionSelector: ".profile__desc"
-}

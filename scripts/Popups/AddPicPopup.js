@@ -1,7 +1,7 @@
 import { FormPopup} from "./FormPopup.js";
 
-import { Card } from "./../Card.js"
-import { cardSelector} from "../initialData.js";
+import { Card } from "../Card.js"
+import { cardSelector} from "../cardData.js";
 
 export class AddPicPopup extends FormPopup {
   constructor(picturePopup, selector) {
