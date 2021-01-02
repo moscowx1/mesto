@@ -10,17 +10,21 @@ import { PicturePopup} from "./Popups/PicturePopup.js";
 import { AddPicPopup} from "./Popups/AddPicPopup.js";
 import { EditProfilePopup} from "./Popups/EditProfilePopup.js";
 
+import { FormValidator} from "./FormValidator.js";
+import { validationSelector} from "./validatorData.js";
+
 const picturePopup = new PicturePopup(picturePopupSelector);
-const addPicPopup = new AddPicPopup(picturePopup, addPicPopupSelector);
-const editProfilePopup = new EditProfilePopup(editProfilePopupSelector);
+const popups = [picturePopup,
+                new AddPicPopup(picturePopup, addPicPopupSelector),
+                new EditProfilePopup(editProfilePopupSelector)];
+
+const forms = Array.from(document.querySelectorAll(validationSelector.formSelector));
+forms.forEach(form => new FormValidator(form, validationSelector).enableValidation());
 
 const elements = document.querySelector(".elements");
-
 const initCards = () => {
   const cards = initialCardsData.map(cardData =>
     new Card(cardData, picturePopup, cardSelector));
-
   elements.prepend(...cards.map(card => card.getCard()));
 };
-
 window.addEventListener("load", initCards);
