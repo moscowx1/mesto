@@ -4,10 +4,11 @@ import { Card } from "../Card.js"
 import { cardSelector} from "../cardData.js";
 
 export class AddPicPopup extends FormPopup {
-  constructor(picturePopup, selector) {
+  constructor(picturePopup, selector, createCard) {
     super(selector);
 
     this._picturePopup = picturePopup;
+    this._createCard = createCard;
   }
 
   _initComponents() {
@@ -19,12 +20,11 @@ export class AddPicPopup extends FormPopup {
   }
 
   _submitAction() {
-    const data = {
+    const cardData = {
       name: this._name.value,
       link: this._link.value,
     };
-    const card = new Card(data, this._picturePopup, cardSelector);
 
-    this._cards.prepend(card.getCard());
+    this._cards.prepend(this._createCard(cardData));
   }
 }

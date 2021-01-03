@@ -14,8 +14,14 @@ import { FormValidator} from "./FormValidator.js";
 import { validationSelectors} from "./validatorData.js";
 
 const picturePopup = new PicturePopup(picturePopupSelector);
+
+const createCard = (cardData) => {
+  return new Card(cardData, picturePopup, cardSelector).getCard();
+};
+
+
 const popups = [picturePopup,
-                new AddPicPopup(picturePopup, addPicPopupSelector),
+                new AddPicPopup(picturePopup, addPicPopupSelector, createCard),
                 new EditProfilePopup(editProfilePopupSelector)];
 
 const forms = Array.from(document.querySelectorAll(validationSelectors.formSelector));
@@ -23,8 +29,7 @@ forms.forEach(form => new FormValidator(form, validationSelectors).enableValidat
 
 const elements = document.querySelector(".elements");
 const initCards = () => {
-  const cards = initialCardsData.map(cardData =>
-    new Card(cardData, picturePopup, cardSelector));
-  elements.prepend(...cards.map(card => card.getCard()));
+  const cards = initialCardsData.map(createCard);
+  elements.prepend(...cards);
 };
 window.addEventListener("load", initCards);
