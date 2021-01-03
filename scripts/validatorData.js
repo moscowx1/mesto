@@ -1,4 +1,4 @@
-export const validationSelector = {
+export const validationSelectors = {
   formSelector: '.popup__form',
   formAutoFilledInputs: 'popup__form_autofilled-inputs',
   inputSelector: '.popup__input',

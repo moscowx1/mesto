@@ -11,15 +11,15 @@ import { AddPicPopup} from "./Popups/AddPicPopup.js";
 import { EditProfilePopup} from "./Popups/EditProfilePopup.js";
 
 import { FormValidator} from "./FormValidator.js";
-import { validationSelector} from "./validatorData.js";
+import { validationSelectors} from "./validatorData.js";
 
 const picturePopup = new PicturePopup(picturePopupSelector);
 const popups = [picturePopup,
                 new AddPicPopup(picturePopup, addPicPopupSelector),
                 new EditProfilePopup(editProfilePopupSelector)];
 
-const forms = Array.from(document.querySelectorAll(validationSelector.formSelector));
-forms.forEach(form => new FormValidator(form, validationSelector).enableValidation());
+const forms = Array.from(document.querySelectorAll(validationSelectors.formSelector));
+forms.forEach(form => new FormValidator(form, validationSelectors).enableValidation());
 
 const elements = document.querySelector(".elements");
 const initCards = () => {

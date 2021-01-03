@@ -7,8 +7,7 @@ export class FormValidator {
   }
 
   _initComponents() {
-    this._inputs = Array.from(
-      this._form.querySelectorAll(this._selector.inputSelector));
+    this._inputs = Array.from(this._form.querySelectorAll(this._selector.inputSelector));
     this._submitBtn = this._form.querySelector(this._selector.submitButtonSelector);
     this._autoFilledInputs = this._form.classList.contains(this._selector.formAutoFilledInputs);
   }
