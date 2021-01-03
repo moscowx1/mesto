@@ -1,31 +1,31 @@
 export class FormValidator {
-  constructor(form, selector){
+  constructor(form, configs){
     this._form = form;
-    this._selector = selector;
+    this._configs = configs;
 
     this._initComponents();
   }
 
   _initComponents() {
-    this._inputs = Array.from(this._form.querySelectorAll(this._selector.inputSelector));
-    this._submitBtn = this._form.querySelector(this._selector.submitButtonSelector);
-    this._autoFilledInputs = this._form.classList.contains(this._selector.formAutoFilledInputs);
+    this._inputs = Array.from(this._form.querySelectorAll(this._configs.inputSelector));
+    this._submitBtn = this._form.querySelector(this._configs.submitButtonSelector);
+    this._autoFilledInputs = this._form.classList.contains(this._configs.formAutoFilledInputs);
   }
 
   _showInputError(input) {
     const errorElem = this._form.querySelector(`.${input.id}-error`);
     errorElem.textContent = input.validationMessage;
-    errorElem.classList.add(this._selector.errorClass);
+    errorElem.classList.add(this._configs.errorClass);
 
-    input.classList.add(this._selector.inputErrorClass);
+    input.classList.add(this._configs.inputErrorClass);
   }
 
   _hideInputError(input) {
     const errorElem = this._form.querySelector(`.${input.id}-error`);
     errorElem.textContent = '';
-    errorElem.classList.remove(this._selector.errorClass);
+    errorElem.classList.remove(this._configs.errorClass);
 
-    input.classList.remove(this._selector.inputErrorClass);
+    input.classList.remove(this._configs.inputErrorClass);
   };
 
   _hasIndalidInput() {
@@ -34,9 +34,9 @@ export class FormValidator {
 
   _setSubmitBtnState(disabled) {
     if(disabled)
-      this._submitBtn.classList.add(this._selector.inactiveButtonClass);
+      this._submitBtn.classList.add(this._configs.inactiveButtonClass);
     else
-      this._submitBtn.classList.remove(this._selector.inactiveButtonClass);
+      this._submitBtn.classList.remove(this._configs.inactiveButtonClass);
 
     this._submitBtn.disabled = disabled;
   }

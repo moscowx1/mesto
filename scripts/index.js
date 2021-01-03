@@ -1,31 +1,30 @@
 import { Card} from "./Card.js";
-import { cardSelector,
+import { cardSelectors,
          initialCardsData} from "./cardData.js";
 
-import { editProfilePopupSelector,
-         picturePopupSelector,
-         addPicPopupSelector} from "./Popups/popupSelectors.js";
+import { editProfilePopupSelectors,
+         picturePopupSelectors,
+         addPicPopupSelectors} from "./Popups/popupSelectors.js";
 
 import { PicturePopup} from "./Popups/PicturePopup.js";
 import { AddPicPopup} from "./Popups/AddPicPopup.js";
 import { EditProfilePopup} from "./Popups/EditProfilePopup.js";
 
 import { FormValidator} from "./FormValidator.js";
-import { validationSelectors} from "./validatorData.js";
+import { validationConfigs} from "./validatorData.js";
 
-const picturePopup = new PicturePopup(picturePopupSelector);
+const picturePopup = new PicturePopup(picturePopupSelectors);
 
 const createCard = (cardData) => {
-  return new Card(cardData, picturePopup, cardSelector).getCard();
+  return new Card(cardData, picturePopup, cardSelectors).getCard();
 };
 
-
 const popups = [picturePopup,
-                new AddPicPopup(picturePopup, addPicPopupSelector, createCard),
-                new EditProfilePopup(editProfilePopupSelector)];
+                new AddPicPopup(picturePopup, addPicPopupSelectors, createCard),
+                new EditProfilePopup(editProfilePopupSelectors)];
 
-const forms = Array.from(document.querySelectorAll(validationSelectors.formSelector));
-forms.forEach(form => new FormValidator(form, validationSelectors).enableValidation());
+const forms = Array.from(document.querySelectorAll(validationConfigs.formSelector));
+forms.forEach(form => new FormValidator(form, validationConfigs).enableValidation());
 
 const elements = document.querySelector(".elements");
 const initCards = () => {

@@ -27,7 +27,7 @@ export const initialCardsData = [
 
 export const cardErrorMsg = "Возникла ошибка при добавлении нового места";
 
-export const cardSelector = {
+export const cardSelectors = {
   templateSelector: ".element-template",
   cardSelector: ".element",
   nameSelector: ".element__name",
