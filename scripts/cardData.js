@@ -25,14 +25,13 @@ export const initialCardsData = [
   }
 ];
 
-export const cardErrorMsg = "Возникла ошибка при добавлении нового места";
-
-export const cardSelectors = {
+export const cardConfigs = {
   templateSelector: ".element-template",
   cardSelector: ".element",
   nameSelector: ".element__name",
   imgSelector: ".element__img",
   likeBtnSelector: ".element__like-btn",
   likeBtnActiveClass: "element__like-btn_active",
-  removeBtnSelector: ".element__remove-btn"
+  removeBtnSelector: ".element__remove-btn",
+  errorMsg: "Возникла ошибка при добавлении нового места"
 };

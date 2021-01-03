@@ -1,11 +1,12 @@
 import { FormPopup} from "./FormPopup.js";
 
 export class AddPicPopup extends FormPopup {
-  constructor(picturePopup, selectors, createCard) {
+  constructor(picturePopup, selectors, cardFuncs) {
     super(selectors);
 
     this._picturePopup = picturePopup;
-    this._createCard = createCard;
+    this._cardFuncs = cardFuncs;
+
   }
 
   _initComponents() {
@@ -22,6 +23,7 @@ export class AddPicPopup extends FormPopup {
       link: this._link.value,
     };
 
-    this._cards.prepend(this._createCard(cardData));
+    const card = this._cardFuncs.create(cardData);
+    this._cardFuncs.add(card);
   }
 }

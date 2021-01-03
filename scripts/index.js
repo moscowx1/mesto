@@ -1,5 +1,5 @@
 import { Card} from "./Card.js";
-import { cardSelectors,
+import { cardConfigs,
          initialCardsData} from "./cardData.js";
 
 import { editProfilePopupSelectors,
@@ -15,20 +15,21 @@ import { validationConfigs} from "./validatorData.js";
 
 const picturePopup = new PicturePopup(picturePopupSelectors);
 
-const createCard = (cardData) => {
-  return new Card(cardData, picturePopup, cardSelectors).getCard();
+const elements = document.querySelector(".elements");
+const cardFuncs = {
+  create: (cardData) => new Card(cardData, picturePopup, cardConfigs).getCard(),
+  add: (card) => elements.prepend(card)
 };
 
 const popups = [picturePopup,
-                new AddPicPopup(picturePopup, addPicPopupSelectors, createCard),
+                new AddPicPopup(picturePopup, addPicPopupSelectors, cardFuncs),
                 new EditProfilePopup(editProfilePopupSelectors)];
 
 const forms = Array.from(document.querySelectorAll(validationConfigs.formSelector));
 forms.forEach(form => new FormValidator(form, validationConfigs).enableValidation());
 
-const elements = document.querySelector(".elements");
 const initCards = () => {
-  const cards = initialCardsData.map(createCard);
-  elements.prepend(...cards);
+  const cards = initialCardsData.map(cardFuncs.create);
+  cards.forEach(card => cardFuncs.add(card));
 };
 window.addEventListener("load", initCards);
