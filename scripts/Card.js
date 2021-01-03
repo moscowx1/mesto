@@ -1,32 +1,32 @@
 import { cardErrorMsg} from "./cardData.js";
 
 export class Card {
-  constructor(data, popup, selector) {
+  constructor(data, popup, selectors) {
     this._name = data.name;
     this._link = data.link;
     this._errorMsg = cardErrorMsg;
 
     this._popup = popup;
-    this._selector = selector;
+    this._selectors = selectors;
   }
 
   _getTemplate() {
     const card = document
-      .querySelector(this._selector.templateSelector)
+      .querySelector(this._selectors.templateSelector)
       .content
-      .querySelector(this._selector.cardSelector)
+      .querySelector(this._selectors.cardSelector)
       .cloneNode(true);
 
     return card;
   }
 
   _initComponents() {
-    this._img = this._element.querySelector(this._selector.imgSelector);
+    this._img = this._element.querySelector(this._selectors.imgSelector);
 
-    this._likeBtn = this._element.querySelector(this._selector.likeBtnSelector);
-    this._removeBtn = this._element.querySelector(this._selector.removeBtnSelector);
+    this._likeBtn = this._element.querySelector(this._selectors.likeBtnSelector);
+    this._removeBtn = this._element.querySelector(this._selectors.removeBtnSelector);
 
-    this._elementName = this._element.querySelector(this._selector.nameSelector);
+    this._elementName = this._element.querySelector(this._selectors.nameSelector);
   }
 
   _removeElement() {
@@ -39,7 +39,7 @@ export class Card {
   }
 
   _likeCard () {
-    this._likeBtn.classList.toggle(this._selector.likeBtnActiveClass);
+    this._likeBtn.classList.toggle(this._selectors.likeBtnActiveClass);
   };
 
   _setEventListeners() {

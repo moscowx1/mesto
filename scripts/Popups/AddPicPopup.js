@@ -1,11 +1,8 @@
 import { FormPopup} from "./FormPopup.js";
 
-import { Card } from "../Card.js"
-import { cardSelector} from "../cardData.js";
-
 export class AddPicPopup extends FormPopup {
-  constructor(picturePopup, selector, createCard) {
-    super(selector);
+  constructor(picturePopup, selectors, createCard) {
+    super(selectors);
 
     this._picturePopup = picturePopup;
     this._createCard = createCard;
@@ -13,10 +10,10 @@ export class AddPicPopup extends FormPopup {
 
   _initComponents() {
     super._initComponents();
-    this._cards = document.querySelector(this._selector.cardsSelector);
+    this._cards = document.querySelector(this._selectors.cardsSelector);
 
-    this._name = this._element.querySelector(this._selector.nameSelector);
-    this._link = this._element.querySelector(this._selector.linkSelector);
+    this._name = this._element.querySelector(this._selectors.nameSelector);
+    this._link = this._element.querySelector(this._selectors.linkSelector);
   }
 
   _submitAction() {
