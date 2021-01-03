@@ -1,14 +1,14 @@
 import { Popup} from "./Popup.js";
 
 export class FormPopup extends Popup{
-  constructor(selectors){
-    super(selectors);
+  constructor(configs){
+    super(configs);
   }
 
   _initComponents() {
     super._initComponents();
-    this._openBtn = document.querySelector(this._selectors.openBtnSelector);
-    this._form = this._element.querySelector(this._selectors.formSelector)
+    this._openBtn = document.querySelector(this._configs.openBtnSelector);
+    this._form = this._element.querySelector(this._configs.formSelector)
   }
 
   _setEventListeners() {

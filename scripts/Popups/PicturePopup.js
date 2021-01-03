@@ -1,14 +1,14 @@
 import { Popup} from "./Popup.js";
 
 export class PicturePopup extends Popup {
-  constructor(selectors){
-    super(selectors);
+  constructor(configs){
+    super(configs);
   }
 
   _initComponents() {
     super._initComponents();
-    this._img = this._element.querySelector(this._selectors.imgSelector);
-    this._caption = this._element.querySelector(this._selectors.captionSelector);
+    this._img = this._element.querySelector(this._configs.imgSelector);
+    this._caption = this._element.querySelector(this._configs.captionSelector);
   }
 
   closePopup() {

@@ -1,18 +1,18 @@
 import { FormPopup} from "./FormPopup.js";
 
 export class EditProfilePopup extends FormPopup {
-  constructor(selectors){
-    super(selectors);
+  constructor(configs){
+    super(configs);
   }
 
   _initComponents() {
     super._initComponents();
 
-    this._nameInput = this._element.querySelector(this._selectors.nameInputSelector);
-    this._descriptionInput = this._element.querySelector(this._selectors.descriptionInputSelector);
+    this._nameInput = this._element.querySelector(this._configs.nameInputSelector);
+    this._descriptionInput = this._element.querySelector(this._configs.descriptionInputSelector);
 
-    this._name = document.querySelector(this._selectors.nameSelector);
-    this._description = document.querySelector(this._selectors.descriptionSelector);
+    this._name = document.querySelector(this._configs.nameSelector);
+    this._description = document.querySelector(this._configs.descriptionSelector);
   }
 
   _submitAction() {

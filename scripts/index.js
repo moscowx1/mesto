@@ -2,18 +2,18 @@ import { Card} from "./Card.js";
 import { cardConfigs,
          initialCardsData} from "./cardData.js";
 
-import { editProfilePopupSelectors,
-         picturePopupSelectors,
-         addPicPopupSelectors} from "./Popups/popupSelectors.js";
+import { editProfilePopupConfigs,
+         picturePopupConfigs,
+         addPicPopupConfigs} from "./Popups/popupConfigs.js";
 
 import { PicturePopup} from "./Popups/PicturePopup.js";
 import { AddPicPopup} from "./Popups/AddPicPopup.js";
 import { EditProfilePopup} from "./Popups/EditProfilePopup.js";
 
 import { FormValidator} from "./FormValidator.js";
-import { validationConfigs} from "./validatorData.js";
+import { validationConfigs} from "./validatorConfigs.js";
 
-const picturePopup = new PicturePopup(picturePopupSelectors);
+const picturePopup = new PicturePopup(picturePopupConfigs);
 
 const elements = document.querySelector(".elements");
 const cardFuncs = {
@@ -22,8 +22,8 @@ const cardFuncs = {
 };
 
 const popups = [picturePopup,
-                new AddPicPopup(picturePopup, addPicPopupSelectors, cardFuncs),
-                new EditProfilePopup(editProfilePopupSelectors)];
+                new AddPicPopup(picturePopup, addPicPopupConfigs, cardFuncs),
+                new EditProfilePopup(editProfilePopupConfigs)];
 
 const forms = Array.from(document.querySelectorAll(validationConfigs.formSelector));
 forms.forEach(form => new FormValidator(form, validationConfigs).enableValidation());

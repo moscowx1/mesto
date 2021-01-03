@@ -1,20 +1,17 @@
 import { FormPopup} from "./FormPopup.js";
 
 export class AddPicPopup extends FormPopup {
-  constructor(picturePopup, selectors, cardFuncs) {
-    super(selectors);
+  constructor(picturePopup, configs, cardFuncs) {
+    super(configs);
 
     this._picturePopup = picturePopup;
     this._cardFuncs = cardFuncs;
-
   }
 
   _initComponents() {
     super._initComponents();
-    this._cards = document.querySelector(this._selectors.cardsSelector);
-
-    this._name = this._element.querySelector(this._selectors.nameSelector);
-    this._link = this._element.querySelector(this._selectors.linkSelector);
+    this._name = this._element.querySelector(this._configs.nameSelector);
+    this._link = this._element.querySelector(this._configs.linkSelector);
   }
 
   _submitAction() {
