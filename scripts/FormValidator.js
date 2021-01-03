@@ -33,10 +33,12 @@ export class FormValidator {
   }
 
   _setSubmitBtnState(disabled) {
-    if(disabled)
+    if(disabled){
       this._submitBtn.classList.add(this._configs.inactiveButtonClass);
-    else
+    }
+    else{
       this._submitBtn.classList.remove(this._configs.inactiveButtonClass);
+    }
 
     this._submitBtn.disabled = disabled;
   }
@@ -47,10 +49,12 @@ export class FormValidator {
   }
 
   _checkInputValidity(input) {
-    if (!input.validity.valid)
+    if (!input.validity.valid){
       this._showInputError(input);
-    else
+    }
+    else{
       this._hideInputError(input);
+    }
   }
 
   _handleInput(input) {
@@ -66,8 +70,9 @@ export class FormValidator {
   }
 
   enableValidation() {
-    if(!this._autoFilledInputs)
+    if(!this._autoFilledInputs){
       this._setSubmitBtnState(this._hasIndalidInput());
+    }
 
     this._setEventListeners();
   }

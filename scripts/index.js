@@ -30,6 +30,6 @@ forms.forEach(form => new FormValidator(form, validationConfigs).enableValidatio
 
 const initCards = () => {
   const cards = initialCardsData.map(cardFuncs.create);
-  cards.forEach(card => cardFuncs.add(card));
+  cards.forEach(cardFuncs.add);
 };
 window.addEventListener("load", initCards);

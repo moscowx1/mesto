@@ -11,8 +11,9 @@ export class Popup {
 
   _handleClick(evt) {
     if(evt.target.classList.contains(this._selectors.backgroundClass) ||
-       evt.target.classList.contains(this._selectors.closeBtnClass))
-     this.closePopup();
+       evt.target.classList.contains(this._selectors.closeBtnClass)){
+        this.closePopup();
+       }
   }
 
   _setEventListeners() {
@@ -20,8 +21,9 @@ export class Popup {
   }
 
   _handleKey(evt) {
-    if(evt.key === "Escape")
+    if(evt.key === "Escape"){
       this.closePopup();
+    }
   }
 
   _setTemporaryEventListeners() {
