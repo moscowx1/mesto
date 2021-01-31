@@ -1,6 +1,6 @@
 import Card from "../components/Card.js";
 import { cardConfigs,
-         initialCardsData} from "../components/cardData.js";
+         initialCardsData} from "../utils/cardData.js";
 
 import { editProfilePopupConfigs,
          picturePopupConfigs,
@@ -11,7 +11,7 @@ import AddPicPopup from "../components/Popups/AddPicPopup.js";
 import EditProfilePopup from "../components/Popups/EditProfilePopup.js";
 
 import FormValidator from "./FormValidator.js";
-import { validationConfigs } from "./validatorConfigs.js";
+import { validationConfigs } from "../utils/validatorConfigs.js";
 
 const picturePopup = new PicturePopup(picturePopupConfigs);
 
