@@ -35,3 +35,5 @@ export const cardConfigs = {
   removeBtnSelector: ".element__remove-btn",
   errorMsg: "Возникла ошибка при добавлении нового места"
 };
+
+export const cardContainerSelector = ".elements";
