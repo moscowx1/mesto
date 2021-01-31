@@ -1,4 +1,4 @@
-export class Popup {
+export default class Popup {
   constructor(configs){
     this._configs = configs;
     this._initComponents();

@@ -1,6 +1,6 @@
-import { FormPopup} from "./FormPopup.js";
+import FormPopup from "./FormPopup.js";
 
-export class AddPicPopup extends FormPopup {
+export default class AddPicPopup extends FormPopup {
   constructor(picturePopup, configs, cardFuncs) {
     super(configs);
 

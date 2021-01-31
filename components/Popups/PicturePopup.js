@@ -1,6 +1,6 @@
-import { Popup} from "./Popup.js";
+import Popup from "./Popup.js";
 
-export class PicturePopup extends Popup {
+export default class PicturePopup extends Popup {
   constructor(configs){
     super(configs);
   }

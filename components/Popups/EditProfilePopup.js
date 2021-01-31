@@ -1,6 +1,6 @@
-import { FormPopup} from "./FormPopup.js";
+import FormPopup from "./FormPopup.js";
 
-export class EditProfilePopup extends FormPopup {
+export default class EditProfilePopup extends FormPopup {
   constructor(configs){
     super(configs);
   }

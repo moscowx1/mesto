@@ -1,4 +1,4 @@
-import { Card} from "../components/Card.js";
+import Card from "../components/Card.js";
 import { cardConfigs,
          initialCardsData} from "../components/cardData.js";
 
@@ -6,12 +6,12 @@ import { editProfilePopupConfigs,
          picturePopupConfigs,
          addPicPopupConfigs} from "../components/Popups/popupConfigs.js";
 
-import { PicturePopup} from "../components/Popups/PicturePopup.js";
-import { AddPicPopup} from "../components/Popups/AddPicPopup.js";
-import { EditProfilePopup} from "../components/Popups/EditProfilePopup.js";
+import PicturePopup from "../components/Popups/PicturePopup.js";
+import AddPicPopup from "../components/Popups/AddPicPopup.js";
+import EditProfilePopup from "../components/Popups/EditProfilePopup.js";
 
-import { FormValidator} from "./FormValidator.js";
-import { validationConfigs} from "./validatorConfigs.js";
+import FormValidator from "./FormValidator.js";
+import { validationConfigs } from "./validatorConfigs.js";
 
 const picturePopup = new PicturePopup(picturePopupConfigs);
 
