@@ -1,5 +1,4 @@
 import PopupWithForm from "./PopupWithForm.js";
-import FormPopup from "./PopupWithForm.js";
 
 export default class EditProfilePopup extends PopupWithForm {
   constructor(configs){
