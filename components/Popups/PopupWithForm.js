@@ -22,6 +22,12 @@ export default class PopupWithForm extends Popup{
     this._form.reset();
   }
 
+  _getInputValues() {
+    const inputs = Array.from(this._form.querySelectorAll("input"));
+    const nameValuePair =  inputs.map(input => [input.name, input.value]);
+    return Object.fromEntries(nameValuePair);
+  }
+
   _submitAction() { }
 
   submitForm(evt) {
