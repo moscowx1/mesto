@@ -1,6 +1,7 @@
-import FormPopup from "./FormPopup.js";
+import PopupWithForm from "./PopupWithForm.js";
+import FormPopup from "./PopupWithForm.js";
 
-export default class EditProfilePopup extends FormPopup {
+export default class EditProfilePopup extends PopupWithForm {
   constructor(configs){
     super(configs);
   }
@@ -20,9 +21,9 @@ export default class EditProfilePopup extends FormPopup {
     this._description.textContent = this._descriptionInput.value;
   }
 
-  openPopup() {
+  open() {
     this._nameInput.value = this._name.textContent;
     this._descriptionInput.value = this._description.textContent;
-    super.openPopup();
+    super.open();
   }
 }

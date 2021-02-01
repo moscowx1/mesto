@@ -2,7 +2,7 @@ export default class Popup {
   constructor(configs){
     this._configs = configs;
     this._initComponents();
-    this._setEventListeners();
+    this.setEventListeners();
   }
 
   _initComponents() {
@@ -12,26 +12,26 @@ export default class Popup {
   _handleClick(evt) {
     if(evt.target.classList.contains(this._configs.backgroundClass) ||
        evt.target.classList.contains(this._configs.closeBtnClass)){
-        this.closePopup();
+        this.close();
        }
   }
 
-  _setEventListeners() {
+  setEventListeners() {
     this._element.addEventListener("click", this._handleClick.bind(this));
   }
 
-  _handleKey(evt) {
+  _handleEscClose(evt) {
     if(evt.key === "Escape"){
-      this.closePopup();
+      this.close();
     }
   }
 
   _setTemporaryEventListeners() {
-    this._keyHandlerWrapper = this._handleKey.bind(this);
+    this._keyHandlerWrapper = this._handleEscClose.bind(this);
     window.addEventListener("keydown", this._keyHandlerWrapper);
   }
 
-  openPopup() {
+  open() {
     this._setTemporaryEventListeners();
     this._element.classList.add(this._configs.popupOpenedClass);
   }
@@ -40,7 +40,7 @@ export default class Popup {
     window.removeEventListener("keydown", this._keyHandlerWrapper);
   }
 
-  closePopup() {
+  close() {
     this._removeTemporaryEventListeners();
     this._element.classList.remove(this._configs.popupOpenedClass);
   }

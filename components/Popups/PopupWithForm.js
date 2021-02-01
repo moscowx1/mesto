@@ -1,6 +1,6 @@
 import Popup from "./Popup.js";
 
-export default class FormPopup extends Popup{
+export default class PopupWithForm extends Popup{
   constructor(configs){
     super(configs);
   }
@@ -11,14 +11,14 @@ export default class FormPopup extends Popup{
     this._form = this._element.querySelector(this._configs.formSelector)
   }
 
-  _setEventListeners() {
-    super._setEventListeners();
+  setEventListeners() {
+    super.setEventListeners();
     this._form.addEventListener("submit", this.submitForm.bind(this));
-    this._openBtn.addEventListener("click", this.openPopup.bind(this));
+    this._openBtn.addEventListener("click", this.open.bind(this));
   }
 
-  closePopup() {
-    super.closePopup();
+  close() {
+    super.close();
     this._form.reset();
   }
 
@@ -27,6 +27,6 @@ export default class FormPopup extends Popup{
   submitForm(evt) {
     evt.preventDefault();
     this._submitAction();
-    this.closePopup();
+    this.close();
   }
 }

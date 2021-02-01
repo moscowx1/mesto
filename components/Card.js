@@ -40,7 +40,7 @@ export default class Card {
   };
 
   _setEventListeners() {
-    this._img.addEventListener("click", () => this._popup.openPopup(this._name, this._link));
+    this._img.addEventListener("click", () => this._popup.open(this._name, this._link));
     this._img.addEventListener("error", this._handleErrorImg.bind(this));
 
     this._likeBtn.addEventListener("click", this._likeCard.bind(this));
