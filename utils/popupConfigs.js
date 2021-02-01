@@ -26,7 +26,7 @@ export const addPicPopupConfigs = {
 };
 addPicPopupConfigs.__proto__ = formPopupConfigs;
 
-export const editProfilePopupConfigs = {
+export const profilePopupConfigs = {
   popupSelector: ".popup_edit-profile",
   openBtnSelector: ".profile__edit-button",
   nameInputSelector: ".popup__profile-name",
@@ -34,4 +34,4 @@ export const editProfilePopupConfigs = {
   nameSelector: ".profile__name",
   descriptionSelector: ".profile__desc"
 };
-editProfilePopupConfigs.__proto__ = formPopupConfigs;
+profilePopupConfigs.__proto__ = formPopupConfigs;

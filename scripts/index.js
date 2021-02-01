@@ -3,20 +3,18 @@ import { cardConfigs,
   initialCardsData,
   cardContainerSelector,
 } from "../utils/cardData.js";
+import Section from "../components/Section.js";
 
-import { editProfilePopupConfigs,
+import { profilePopupConfigs,
   picturePopupConfigs,
   addPicPopupConfigs,
 } from "../utils/popupConfigs.js";
-
 import PopupWithImage from "../components/Popups/PopupWithImage.js";
-import AddPicPopup from "../components/Popups/AddPicPopup.js";
-import EditProfilePopup from "../components/Popups/EditProfilePopup.js";
+import UserInfo from "../components/UserInfo.js";
+import PopupWithForm from "../components/Popups/PopupWithForm.js";
 
 import FormValidator from "../components/FormValidator.js";
 import { validationConfigs } from "../utils/validatorConfigs.js";
-
-import Section from "../components/Section.js";
 
 const picturePopup = new PopupWithImage(picturePopupConfigs);
 
@@ -34,8 +32,20 @@ const cardSection = new Section({
   }, cardContainerSelector
 );
 
-new AddPicPopup(addPicPopupConfigs, cardRenderer);
-new EditProfilePopup(editProfilePopupConfigs);
+new PopupWithForm(addPicPopupConfigs, cardRenderer, () => {});
+
+const profileNameInput = document.querySelector(profilePopupConfigs.nameInputSelector);
+const profileDescInput = document.querySelector(profilePopupConfigs.descriptionInputSelector);
+const userInfo = new UserInfo(profilePopupConfigs);
+new PopupWithForm(
+  profilePopupConfigs,
+  userInfo.setUserInfo,
+  () => {
+    const info = userInfo.getUserInfo();
+    profileNameInput.value = info.name;
+    profileDescInput.value = info.desc;
+  }
+);
 
 const forms = Array.from(
   document.querySelectorAll(validationConfigs.formSelector));
