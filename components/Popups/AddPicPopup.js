@@ -1,10 +1,9 @@
 import PopupWithForm from "./PopupWithForm.js";
 
 export default class AddPicPopup extends PopupWithForm {
-  constructor(picturePopup, configs, renderer) {
+  constructor(configs, renderer) {
     super(configs);
 
-    this._picturePopup = picturePopup;
     this._renderer = renderer;
   }
 
@@ -15,11 +14,6 @@ export default class AddPicPopup extends PopupWithForm {
   }
 
   _submitAction() {
-    const cardData = {
-      name: this._name.value,
-      link: this._link.value,
-    };
-
-    this._renderer(cardData);
+    this._renderer(this._getInputValues());
   }
 }

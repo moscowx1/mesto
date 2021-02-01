@@ -1,9 +1,9 @@
 export default class Card {
-  constructor(data, popup, configs) {
-    this._name = data.name;
-    this._link = data.link;
+  constructor(data, clickHandler, configs) {
+    this.name = data.name;
+    this.link = data.link;
 
-    this._popup = popup;
+    this._clickHandler = clickHandler;
     this._configs = configs;
   }
 
@@ -40,7 +40,7 @@ export default class Card {
   };
 
   _setEventListeners() {
-    this._img.addEventListener("click", () => this._popup.open(this._name, this._link));
+    this._img.addEventListener("click", this._clickHandler);
     this._img.addEventListener("error", this._handleErrorImg.bind(this));
 
     this._likeBtn.addEventListener("click", this._likeCard.bind(this));
@@ -52,10 +52,10 @@ export default class Card {
     this._initComponents();
     this._setEventListeners();
 
-    this._img.src = this._link;
-    this._img.alt = this._name;
+    this._img.src = this.link;
+    this._img.alt = this.name;
 
-    this._elementName.textContent = this._name;
+    this._elementName.textContent = this.name;
 
     return this._element;
   }
