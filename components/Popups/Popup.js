@@ -1,8 +1,10 @@
 export default class Popup {
-  constructor(configs){
+  constructor(configs) {
     this._configs = configs;
     this._initComponents();
     this.setEventListeners();
+
+    this._handleEscClose = this._handleEscClose.bind(this);
   }
 
   _initComponents() {
@@ -10,9 +12,9 @@ export default class Popup {
   }
 
   _handleClick(evt) {
-    if(evt.target.classList.contains(this._configs.backgroundClass) ||
-       evt.target.classList.contains(this._configs.closeBtnClass)){
-        this.close();
+    if (evt.target.classList.contains(this._configs.backgroundClass) ||
+        evt.target.classList.contains(this._configs.closeBtnClass)) {
+         this.close();
        }
   }
 
@@ -21,14 +23,13 @@ export default class Popup {
   }
 
   _handleEscClose(evt) {
-    if(evt.key === "Escape"){
+    if (evt.key === "Escape") {
       this.close();
     }
   }
 
   _setTemporaryEventListeners() {
-    this._keyHandlerWrapper = this._handleEscClose.bind(this);
-    window.addEventListener("keydown", this._keyHandlerWrapper);
+    window.addEventListener("keydown", this._handleEscClose);
   }
 
   open() {
