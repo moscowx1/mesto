@@ -49,6 +49,9 @@ const profilePopup = new PopupWithForm(
   }
 );
 
+const popups = [picturePopup, addPicPopup, profilePopup];
+popups.forEach(popup => popup.setEventListeners());
+
 const forms = Array.from(document.querySelectorAll(validationConfigs.formSelector));
 const validators = forms.map(form => new FormValidator(form, validationConfigs));
 validators.forEach(validator => validator.enableValidation());

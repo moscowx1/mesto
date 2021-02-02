@@ -2,7 +2,6 @@ export default class Popup {
   constructor(configs) {
     this._configs = configs;
     this._initComponents();
-    this.setEventListeners();
 
     this._handleEscClose = this._handleEscClose.bind(this);
   }
