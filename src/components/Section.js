@@ -9,11 +9,6 @@ export default class Section {
     this._container.prepend(item);
   }
 
-  renderAndAddItem(item) {
-    const element = this._renderer(item);
-    this._container.append(element);
-  }
-
   clear() {
     this._container.innerHtml = '';
   }
