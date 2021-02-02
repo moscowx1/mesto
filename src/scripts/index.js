@@ -34,12 +34,12 @@ const cardSection = new Section({
   }, cardContainerSelector
 );
 
-new PopupWithForm(addPicPopupConfigs, cardRenderer, () => {});
+const addPicPopup = new PopupWithForm(addPicPopupConfigs, cardRenderer, () => {});
 
 const profileNameInput = document.querySelector(profilePopupConfigs.nameInputSelector);
 const profileDescInput = document.querySelector(profilePopupConfigs.descriptionInputSelector);
 const userInfo = new UserInfo(profilePopupConfigs);
-new PopupWithForm(
+const profilePopup = new PopupWithForm(
   profilePopupConfigs,
   userInfo.setUserInfo,
   () => {
@@ -49,10 +49,8 @@ new PopupWithForm(
   }
 );
 
-const forms = Array.from(
-  document.querySelectorAll(validationConfigs.formSelector));
-
-forms.forEach((form) =>
-  new FormValidator(form, validationConfigs).enableValidation());
+const forms = Array.from(document.querySelectorAll(validationConfigs.formSelector));
+const validators = forms.map(form => new FormValidator(form, validationConfigs));
+validators.forEach(validator => validator.enableValidation());
 
 cardSection.renderItems();
