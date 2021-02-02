@@ -20,21 +20,29 @@ import { validationConfigs } from "../utils/validatorConfigs.js";
 
 const picturePopup = new PopupWithImage(picturePopupConfigs);
 
-const cardRenderer = (cardData) => {
+const createCard = (cardData) => {
   const card = new Card(cardData,
     () => picturePopup.open(card.name, card.link),
     cardConfigs);
-  const cardElem = card.getCard();
-  cardSection.addItem(cardElem);
-};
+  return card.getCard();
+}
 
 const cardSection = new Section({
     items: initialCardsData,
-    renderer: cardRenderer,
+    renderer: (cardData) => {
+      const cardElem = createCard(cardData);
+      cardSection.addItem(cardElem);
+    },
   }, cardContainerSelector
 );
 
-const addPicPopup = new PopupWithForm(addPicPopupConfigs, cardRenderer, () => {});
+const addPicPopup = new PopupWithForm(
+  addPicPopupConfigs,
+  (cardData) => {
+    const cardElem = createCard(cardData);
+    cardSection.addItem(cardElem);
+  }
+, () => {});
 
 const profileNameInput = document.querySelector(profilePopupConfigs.nameInputSelector);
 const profileDescInput = document.querySelector(profilePopupConfigs.descriptionInputSelector);
