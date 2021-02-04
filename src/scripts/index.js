@@ -14,6 +14,7 @@ import { profilePopupConfigs,
 import PopupWithImage from "../components/Popups/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
 import PopupWithForm from "../components/Popups/PopupWithForm.js";
+import PopupWithAutoFilledForm from "../components/Popups/PopupWithAutoFilledForm.js";
 
 import FormValidator from "../components/FormValidator.js";
 import { validationConfigs } from "../utils/validatorConfigs.js";
@@ -41,20 +42,14 @@ const addPicPopup = new PopupWithForm(
   (cardData) => {
     const cardElem = createCard(cardData);
     cardSection.addItem(cardElem);
-  }
-, () => {});
+});
 
-const profileNameInput = document.querySelector(profilePopupConfigs.nameInputSelector);
-const profileDescInput = document.querySelector(profilePopupConfigs.descriptionInputSelector);
+
 const userInfo = new UserInfo(profilePopupConfigs);
-const profilePopup = new PopupWithForm(
+const profilePopup = new PopupWithAutoFilledForm(
   profilePopupConfigs,
   userInfo.setUserInfo,
-  () => {
-    const info = userInfo.getUserInfo();
-    profileNameInput.value = info.name;
-    profileDescInput.value = info.desc;
-  }
+  userInfo.getUserInfo,
 );
 
 const popups = [picturePopup, addPicPopup, profilePopup];
