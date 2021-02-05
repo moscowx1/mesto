@@ -56,7 +56,7 @@ const popups = [picturePopup, addPicPopup, profilePopup];
 popups.forEach(popup => popup.setEventListeners());
 
 const forms = Array.from(document.querySelectorAll(validationConfigs.formSelector));
-const validators = forms.map(form => new FormValidator(form, validationConfigs));
-validators.forEach(validator => validator.enableValidation());
+const validators = Object.fromEntries(forms.map(form => [form.getAttribute("name"), new FormValidator(form, validationConfigs)]));
+Object.values(validators).forEach(validator => validator.enableValidation());
 
 cardSection.renderItems();
