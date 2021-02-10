@@ -10,7 +10,6 @@ export default class PopupWithAutoFilledForm extends PopupWithForm {
     super._initComponents();
 
     this._profileNameInput = this._form.querySelector(this._configs.nameInputSelector);
-    console.log(`${this._configs.nameInputSelector}  ${this._form}`);
     this._profileDescInput = this._form.querySelector(this._configs.descriptionInputSelector);
   }
 

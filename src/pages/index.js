@@ -17,7 +17,8 @@ import PopupWithForm from "../components/Popups/PopupWithForm.js";
 import PopupWithAutoFilledForm from "../components/Popups/PopupWithAutoFilledForm.js";
 
 import FormValidator from "../components/FormValidator.js";
-import { validationConfigs } from "../utils/validatorConfigs.js";
+import { validationConfigs,
+  formValidationSelectors } from "../utils/validatorConfigs.js";
 
 const picturePopup = new PopupWithImage(picturePopupConfigs);
 
@@ -55,8 +56,15 @@ const profilePopup = new PopupWithAutoFilledForm(
 const popups = [picturePopup, addPicPopup, profilePopup];
 popups.forEach(popup => popup.setEventListeners());
 
-const forms = Array.from(document.querySelectorAll(validationConfigs.formSelector));
-const validators = Object.fromEntries(forms.map(form => [form.getAttribute("name"), new FormValidator(form, validationConfigs)]));
-Object.values(validators).forEach(validator => validator.enableValidation());
+const formAddPic = document.querySelector(formValidationSelectors.formAddPic);
+const validatorAddPic = new FormValidator(formAddPic, validationConfigs);
+validatorAddPic.enableValidation();
+
+const formProfile = document.querySelector(formValidationSelectors.formProfile);
+const validatorProfile = new FormValidator(formProfile, validationConfigs);
+validatorProfile.enableValidation();
+// const forms = Array.from(document.querySelectorAll(validationConfigs.formSelector));
+// const validators = Object.fromEntries(forms.map(form => [form.getAttribute("name"), new FormValidator(form, validationConfigs)]));
+// Object.values(validators).forEach(validator => validator.enableValidation());
 
 cardSection.renderItems();

@@ -7,3 +7,9 @@ export const validationConfigs = {
   inputErrorClass: 'popup__input_type-error',
   errorClass: 'popup__error_visible'
 };
+
+
+export const formValidationSelectors = {
+  formAddPic: '.form-add-pic',
+  formProfile: '.form-profile',
+}
