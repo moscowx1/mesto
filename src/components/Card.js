@@ -1,9 +1,10 @@
 export default class Card {
-  constructor(data, clickHandler, configs) {
+  constructor(data, clickHandler, removeHandler, configs) {
     this.name = data.name;
     this.link = data.link;
 
     this._clickHandler = clickHandler;
+    this._removeHanlder = removeHandler;
     this._configs = configs;
   }
 
@@ -26,7 +27,7 @@ export default class Card {
     this._elementName = this._element.querySelector(this._configs.nameSelector);
   }
 
-  _removeElement() {
+  removeElement() {
     this._element.remove();
   }
 
@@ -44,7 +45,7 @@ export default class Card {
     this._img.addEventListener("error", this._handleErrorImg.bind(this));
 
     this._likeBtn.addEventListener("click", this._likeCard.bind(this));
-    this._removeBtn.addEventListener("click", this._removeElement.bind(this));
+    this._removeBtn.addEventListener("click", () => this._removeHanlder(this));
   }
 
   getCard() {

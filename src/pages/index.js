@@ -24,12 +24,23 @@ import PopupWithSubmit from "../components/Popups/PopupWithSubmit";
 
 const picturePopup = new PopupWithImage(picturePopupConfigs);
 
+let cardForRemove;
+const confirmDeletePopup = new PopupWithSubmit(confirmDeletePopupConfigs,() => {
+    if (cardForRemove) {
+      cardForRemove.removeElement();
+    }
+});
+
 const createCard = (cardData) => {
   const card = new Card(cardData,
     () => picturePopup.open(card.name, card.link),
+    (card) => {
+      cardForRemove = card;
+      confirmDeletePopup.open();
+    },
     cardConfigs);
   return card.getCard();
-}
+};
 
 const cardSection = new Section({
     items: initialCardsData,
@@ -53,8 +64,6 @@ const profilePopup = new PopupWithAutoFilledForm(
   userInfo.setUserInfo,
   userInfo.getUserInfo,
 );
-
-const confirmDeletePopup = new PopupWithSubmit(confirmDeletePopupConfigs, () => {});
 
 const popups = [picturePopup, addPicPopup, profilePopup, confirmDeletePopup];
 popups.forEach(popup => popup.setEventListeners());
