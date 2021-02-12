@@ -11,7 +11,6 @@ export const picturePopupConfigs = {
 };
 picturePopupConfigs.__proto__ = popupConfigs;
 
-
 const formPopupConfigs = {
   formSelector: ".popup__form"
 };
@@ -25,6 +24,11 @@ export const addPicPopupConfigs = {
   cardsSelector: ".elements"
 };
 addPicPopupConfigs.__proto__ = formPopupConfigs;
+
+export const confirmDeletePopupConfigs = {
+  popupSelector: ".popup_confirm-delete"
+};
+confirmDeletePopupConfigs.__proto__ = formPopupConfigs;
 
 export const profilePopupConfigs = {
   popupSelector: ".popup_edit-profile",

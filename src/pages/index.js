@@ -10,6 +10,7 @@ import Section from "../components/Section.js";
 import { profilePopupConfigs,
   picturePopupConfigs,
   addPicPopupConfigs,
+  confirmDeletePopupConfigs
 } from "../utils/popupConfigs.js";
 import PopupWithImage from "../components/Popups/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
@@ -19,6 +20,7 @@ import PopupWithAutoFilledForm from "../components/Popups/PopupWithAutoFilledFor
 import FormValidator from "../components/FormValidator.js";
 import { validationConfigs,
   formValidationSelectors } from "../utils/validatorConfigs.js";
+import PopupWithSubmit from "../components/Popups/PopupWithSubmit";
 
 const picturePopup = new PopupWithImage(picturePopupConfigs);
 
@@ -45,7 +47,6 @@ const addPicPopup = new PopupWithForm(
     cardSection.addItem(cardElem);
 });
 
-
 const userInfo = new UserInfo(profilePopupConfigs);
 const profilePopup = new PopupWithAutoFilledForm(
   profilePopupConfigs,
@@ -53,7 +54,9 @@ const profilePopup = new PopupWithAutoFilledForm(
   userInfo.getUserInfo,
 );
 
-const popups = [picturePopup, addPicPopup, profilePopup];
+const confirmDeletePopup = new PopupWithSubmit(confirmDeletePopupConfigs, () => {});
+
+const popups = [picturePopup, addPicPopup, profilePopup, confirmDeletePopup];
 popups.forEach(popup => popup.setEventListeners());
 
 const formAddPic = document.querySelector(formValidationSelectors.formAddPic);
@@ -63,8 +66,5 @@ validatorAddPic.enableValidation();
 const formProfile = document.querySelector(formValidationSelectors.formProfile);
 const validatorProfile = new FormValidator(formProfile, validationConfigs);
 validatorProfile.enableValidation();
-// const forms = Array.from(document.querySelectorAll(validationConfigs.formSelector));
-// const validators = Object.fromEntries(forms.map(form => [form.getAttribute("name"), new FormValidator(form, validationConfigs)]));
-// Object.values(validators).forEach(validator => validator.enableValidation());
 
 cardSection.renderItems();
