@@ -146,6 +146,31 @@
   </div>
 </div>
 
+<div class="popup popup_change-avatar">
+  <span class="popup__back"></span>
+  <div class="popup__container">
+    <h2 class="popup__title">Обновить профиль</h2>
+    <form name="form-add-pic"
+          class="popup__form form-change-avatar"
+          novalidate>
+      <div class="popup__input-container">
+        <input type="url"
+               required
+               name="link"
+               id="pic-link-input"
+               placeholder="Ссылка на картинку"
+               class="popup__input popup__img-link">
+        <span class="popup__error pic-link-input-error"></span>
+      </div>
+      <button type="submit"
+              class="popup__submit">Сохранить
+      </button>
+    </form>
+    <button type="button"
+            class="popup__close"></button>
+  </div>
+</div>
+
 <template class="element-template">
   <div class="element">
     <img class="element__img"

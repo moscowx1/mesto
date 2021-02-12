@@ -7,10 +7,13 @@ import { cardConfigs,
 } from "../utils/cardData.js";
 import Section from "../components/Section.js";
 
+import { avatar } from "./../utils/profileUtils.js";
+
 import { profilePopupConfigs,
   picturePopupConfigs,
   addPicPopupConfigs,
-  confirmDeletePopupConfigs
+  confirmDeletePopupConfigs,
+  changeAvatarPopupConfigs
 } from "../utils/popupConfigs.js";
 import PopupWithImage from "../components/Popups/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
@@ -25,11 +28,12 @@ import PopupWithSubmit from "../components/Popups/PopupWithSubmit";
 const picturePopup = new PopupWithImage(picturePopupConfigs);
 
 let cardForRemove;
-const confirmDeletePopup = new PopupWithSubmit(confirmDeletePopupConfigs,() => {
+const confirmDeletePopup = new PopupWithSubmit(
+  confirmDeletePopupConfigs,
+  () => {
     if (cardForRemove) {
       cardForRemove.removeElement();
-    }
-});
+    }});
 
 const createCard = (cardData) => {
   const card = new Card(cardData,
@@ -56,7 +60,18 @@ const addPicPopup = new PopupWithForm(
   (cardData) => {
     const cardElem = createCard(cardData);
     cardSection.addItem(cardElem);
-});
+  });
+
+const changeAvatarPopup = new PopupWithForm(
+  changeAvatarPopupConfigs,
+  ({ link }) => {
+    const oldLink = avatar.src;
+    avatar.src = link
+    avatar.addEventListener("error", () => {
+      alert("Возникла ошибка");
+      avatar.src = oldLink;
+    });
+  });
 
 const userInfo = new UserInfo(profilePopupConfigs);
 const profilePopup = new PopupWithAutoFilledForm(
@@ -65,7 +80,7 @@ const profilePopup = new PopupWithAutoFilledForm(
   userInfo.getUserInfo,
 );
 
-const popups = [picturePopup, addPicPopup, profilePopup, confirmDeletePopup];
+const popups = [picturePopup, addPicPopup, profilePopup, confirmDeletePopup, changeAvatarPopup];
 popups.forEach(popup => popup.setEventListeners());
 
 const formAddPic = document.querySelector(formValidationSelectors.formAddPic);
@@ -75,5 +90,9 @@ validatorAddPic.enableValidation();
 const formProfile = document.querySelector(formValidationSelectors.formProfile);
 const validatorProfile = new FormValidator(formProfile, validationConfigs);
 validatorProfile.enableValidation();
+
+const formChangeAvatar = document.querySelector(formValidationSelectors.formChangeAvatar);
+const validatorChangeAvatar = new FormValidator(formChangeAvatar, validationConfigs);
+validatorChangeAvatar.enableValidation();
 
 cardSection.renderItems();

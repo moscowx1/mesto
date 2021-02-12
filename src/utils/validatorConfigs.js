@@ -12,4 +12,5 @@ export const validationConfigs = {
 export const formValidationSelectors = {
   formAddPic: '.form-add-pic',
   formProfile: '.form-profile',
+  formChangeAvatar: '.form-change-avatar'
 }

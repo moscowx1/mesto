@@ -9,12 +9,12 @@ export default class PopupWithForm extends PopupWithSubmit {
 
   _initComponents() {
     super._initComponents();
-    this._openBtn = document.querySelector(this._configs.openBtnSelector);
+    this._openElement = document.querySelector(this._configs.openElementSelector);
   }
 
   setEventListeners() {
     super.setEventListeners();
-    this._openBtn.addEventListener("click", this.open.bind(this));
+    this._openElement.addEventListener("click", this.open.bind(this));
   }
 
   close() {
