@@ -1,6 +1,7 @@
 .element__name {
   margin: 0;
   text-overflow: ellipsis;
+  align-self: center;
   white-space: nowrap;
   overflow: hidden;
   font-weight: 900;

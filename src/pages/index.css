@@ -23,6 +23,7 @@
 @import url('../blocks/element/element.css');
 @import url('../blocks/element/__img/element__img.css');
 @import url('../blocks/element/__like-btn/element__like-btn.css');
+@import url('../blocks/element/__like-count/element__like-count.css');
 @import url('../blocks/element/__like-btn/_active/element__like-btn_active.css');
 @import url('../blocks/element/__remove-btn/element__remove-btn.css');
 @import url('../blocks/element/__name/element__name.css');
