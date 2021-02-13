@@ -1,15 +1,7 @@
 .profile__avatar-wrapper {
   position: relative;
+  transition: all .5s ease;
 }
-
-/* .profile__avatar-wrapper {
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-} */
 
 .profile__avatar:hover ~ .profile__avatar-wrapper{
   display: flex;
