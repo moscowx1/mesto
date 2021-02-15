@@ -16,6 +16,9 @@ module.exports = {
     compress: true,
     open: true
   },
+  experiments: {
+    topLevelAwait: true
+  },
   module: {
     rules: [
       {
