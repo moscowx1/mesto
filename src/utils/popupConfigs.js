@@ -40,6 +40,7 @@ changeAvatarPopupConfigs.__proto__ = formPopupConfigs;
 export const profilePopupConfigs = {
   popupSelector: ".popup_edit-profile",
   openElementSelector: ".profile__edit-button",
+  avatarSelector: ".profile__avatar",
   nameInputSelector: ".popup__profile-name",
   descriptionInputSelector: ".popup__profile-desc",
   nameSelector: ".profile__name",

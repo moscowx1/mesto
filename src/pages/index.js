@@ -2,18 +2,16 @@ import "../pages/index.css";
 
 import Card from "../components/Card.js";
 import { cardConfigs,
-  initialCardsData,
-  cardContainerSelector,
+         initialCardsData,
+         cardContainerSelector,
 } from "../utils/cardData.js";
 import Section from "../components/Section.js";
 
-import { avatar } from "./../utils/profileUtils.js";
-
 import { profilePopupConfigs,
-  picturePopupConfigs,
-  addPicPopupConfigs,
-  confirmDeletePopupConfigs,
-  changeAvatarPopupConfigs
+         picturePopupConfigs,
+         addPicPopupConfigs,
+         confirmDeletePopupConfigs,
+         changeAvatarPopupConfigs
 } from "../utils/popupConfigs.js";
 import PopupWithImage from "../components/Popups/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
@@ -22,8 +20,15 @@ import PopupWithAutoFilledForm from "../components/Popups/PopupWithAutoFilledFor
 
 import FormValidator from "../components/FormValidator.js";
 import { validationConfigs,
-  formValidationSelectors } from "../utils/validatorConfigs.js";
+         formValidationSelectors } from "../utils/validatorConfigs.js";
 import PopupWithSubmit from "../components/Popups/PopupWithSubmit";
+
+import Api from "../components/Api.js";
+
+const api = new Api();
+
+const userInfo = new UserInfo(profilePopupConfigs, api);
+userInfo.initProfile();
 
 const picturePopup = new PopupWithImage(picturePopupConfigs);
 
@@ -33,7 +38,8 @@ const confirmDeletePopup = new PopupWithSubmit(
   () => {
     if (cardForRemove) {
       cardForRemove.removeElement();
-    }});
+  }}
+);
 
 const createCard = (cardData) => {
   const card = new Card(cardData,
@@ -46,13 +52,12 @@ const createCard = (cardData) => {
   return card.getCard();
 };
 
-const cardSection = new Section({
-    items: initialCardsData,
-    renderer: (cardData) => {
+const cardSection = new Section(
+    await api.getCards(),
+    (cardData) => {
       const cardElem = createCard(cardData);
       cardSection.addItem(cardElem);
-    },
-  }, cardContainerSelector
+    }, cardContainerSelector
 );
 
 const addPicPopup = new PopupWithForm(
@@ -64,16 +69,8 @@ const addPicPopup = new PopupWithForm(
 
 const changeAvatarPopup = new PopupWithForm(
   changeAvatarPopupConfigs,
-  ({ link }) => {
-    const oldLink = avatar.src;
-    avatar.src = link
-    avatar.addEventListener("error", () => {
-      alert("Возникла ошибка");
-      avatar.src = oldLink;
-    });
-  });
+  ({ link }) => userInfo.setUserAvatar(link));
 
-const userInfo = new UserInfo(profilePopupConfigs);
 const profilePopup = new PopupWithAutoFilledForm(
   profilePopupConfigs,
   userInfo.setUserInfo,

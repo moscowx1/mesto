@@ -31,6 +31,7 @@ export const cardConfigs = {
   nameSelector: ".element__name",
   imgSelector: ".element__img",
   likeBtnSelector: ".element__like-btn",
+  likeCountSelector: ".element__like-count",
   likeBtnActiveClass: "element__like-btn_active",
   removeBtnSelector: ".element__remove-btn",
   errorMsg: "Возникла ошибка при добавлении нового места"
