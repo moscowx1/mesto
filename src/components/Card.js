@@ -23,6 +23,10 @@ export default class Card {
     this._likeBtn = this._element.querySelector(this._configs.likeBtnSelector);
     this._removeBtn = this._element.querySelector(this._configs.removeBtnSelector);
 
+    console.log(this._data.canRemove)
+    if (!this._data.canRemove)
+      this._removeBtn.classList.add(this._configs.removeBtnInvisibleClass);
+
     this.likeCount = this._element.querySelector(this._configs.likeCountSelector);
 
     this._elementName = this._element.querySelector(this._configs.nameSelector);

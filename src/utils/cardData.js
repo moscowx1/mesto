@@ -34,6 +34,7 @@ export const cardConfigs = {
   likeCountSelector: ".element__like-count",
   likeBtnActiveClass: "element__like-btn_active",
   removeBtnSelector: ".element__remove-btn",
+  removeBtnInvisibleClass: "element__like-btn-invisible",
   errorMsg: "Возникла ошибка при добавлении нового места"
 };
 
