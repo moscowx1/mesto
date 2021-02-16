@@ -56,7 +56,6 @@ export default class Card {
     this._img.src = this._data.link;
     this._img.alt = this._data.name;
 
-    console.log(this._data);
     this._likeCount = this._data.likes.length;
 
     this._elementName.textContent = this._data.name;

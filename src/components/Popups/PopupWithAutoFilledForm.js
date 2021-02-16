@@ -16,7 +16,7 @@ export default class PopupWithAutoFilledForm extends PopupWithForm {
   open() {
     const data = this._formDataGetter();
     this._profileNameInput.value = data.name;
-    this._profileDescInput.value = data.desc;
+    this._profileDescInput.value = data.about;
 
     super.open();
   }

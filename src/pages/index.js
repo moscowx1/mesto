@@ -28,7 +28,7 @@ import Api from "../components/Api.js";
 const api = new Api();
 
 const userInfo = new UserInfo(profilePopupConfigs, api);
-userInfo.initProfile();
+await userInfo.initProfile();
 
 const picturePopup = new PopupWithImage(picturePopupConfigs);
 
@@ -42,8 +42,10 @@ const confirmDeletePopup = new PopupWithSubmit(
 );
 
 const createCard = (cardData) => {
+  cardData.canRemove = cardData.owner._id === userInfo.info._id;
+
   const card = new Card(cardData,
-    () => picturePopup.open(card.name, card.link),
+    () => picturePopup.open(cardData.name, cardData.link),
     (card) => {
       cardForRemove = card;
       confirmDeletePopup.open();
