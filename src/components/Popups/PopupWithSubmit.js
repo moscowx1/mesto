@@ -9,6 +9,7 @@ export default class PopupWithSubmit extends Popup {
   _initComponents() {
     super._initComponents();
     this._form = this._element.querySelector(this._configs.formSelector)
+    this._submitBtn = this._form.querySelector(this._configs.submitBtnSelector);
   }
 
   setEventListeners() {
@@ -16,9 +17,18 @@ export default class PopupWithSubmit extends Popup {
     this._form.addEventListener("submit", this.submitForm.bind(this));
   }
 
+  setLoading(isLoading) {
+    if (isLoading) {
+      this._submitBtn.classList.add(this._configs.submitBtnLoading)
+    }
+    else {
+      this._submitBtn.classList.remove(this._configs.submitBtnLoading)
+    }
+  }
+
   submitForm(evt) {
     evt.preventDefault();
     this._submitHandler();
-    this.close();
+    //this.close();
   }
 }

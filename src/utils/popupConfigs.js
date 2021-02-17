@@ -12,7 +12,9 @@ export const picturePopupConfigs = {
 picturePopupConfigs.__proto__ = popupConfigs;
 
 const formPopupConfigs = {
-  formSelector: ".popup__form"
+  formSelector: ".popup__form",
+  submitBtnSelector: ".popup__submit",
+  submitBtnLoading: "popup__submit_loading"
 };
 formPopupConfigs.__proto__ = popupConfigs;
 
@@ -21,7 +23,7 @@ export const addPicPopupConfigs = {
   nameSelector: ".popup__img-name",
   linkSelector: ".popup__img-link",
   openElementSelector: ".profile__add-button",
-  cardsSelector: ".elements"
+  cardsSelector: ".elements",
 };
 addPicPopupConfigs.__proto__ = formPopupConfigs;
 
