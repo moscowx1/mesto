@@ -21,6 +21,8 @@ export default class Card {
     this._img = this._element.querySelector(this._configs.imgSelector);
 
     this._likeBtn = this._element.querySelector(this._configs.likeBtnSelector);
+    if(this._data.isLiked)
+      this._likeBtn.classList.add(this._configs.likeBtnActiveClass);
 
     this._removeBtn = this._element.querySelector(this._configs.removeBtnSelector);
 

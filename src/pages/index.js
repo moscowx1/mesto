@@ -43,7 +43,7 @@ const confirmDeletePopup = new PopupWithSubmit(
 
 const createCard = (cardData) => {
   cardData.canRemove = cardData.owner._id === userInfo.info._id;
-
+  cardData.isLiked = cardData.likes.some(like => like._id == userInfo.info._id);
   const card = new Card(cardData,
     () => picturePopup.open(cardData.name, cardData.link),
     (card) => {
