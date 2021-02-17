@@ -4,22 +4,40 @@ export default class Api {
     this._group = "cohort-20";
   }
 
-  sendRequest(path) {
-    return fetch(`https://mesto.nomoreparties.co/v1/${this._group}/${path}`, {
+  _handleError(err) {
+    console.log(err);
+  }
+
+  getCards() {
+    return fetch(`https://mesto.nomoreparties.co/v1/${this._group}/cards`, {
         headers: {
           authorization: this._token,
         },
       })
       .then(res => res.json())
-      .then(data => data)
-      .catch(() => null);
+      .catch(this._handleError);
   }
 
-  getCards() {
-    return this.sendRequest("cards");
+  updateUserInfo(data) {
+    return fetch(`https://mesto.nomoreparties.co/v1/${this._group}/users/me`, {
+      method: "PATCH",
+      headers: {
+        authorization: this._token,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .catch(this._handleError);
   }
 
   getUserInfo() {
-    return this.sendRequest("users/me");
+    return fetch(`https://mesto.nomoreparties.co/v1/${this._group}/users/me`, {
+        headers: {
+          authorization: this._token,
+        },
+      })
+      .then(res => res.json())
+      .catch(this._handleError);
   }
 }
