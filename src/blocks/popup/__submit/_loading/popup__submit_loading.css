@@ -1,3 +1,18 @@
 .popup__submit_loading::after {
-  content: '...';
+  content: '';
+  animation: loading 2s linear infinite;
 }
+
+@keyframes loading {
+  0% {
+    content: ".";
+  }
+  50% {
+    content: "..";
+  }
+  100% {
+    content: "...";
+  }
+}
+
+
