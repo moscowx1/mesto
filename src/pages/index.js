@@ -45,14 +45,23 @@ const confirmDeletePopup = new PopupWithSubmit(
   }}
 );
 
-const createCard = (cardData) => {
-  cardData.canRemove = cardData.owner._id === userInfo.info._id;
-  cardData.isLiked = cardData.likes.some(like => like._id == userInfo.info._id);
-  const card = new Card(cardData,
-    () => picturePopup.open(cardData.name, cardData.link),
+const isCardLiked = (cardData) => cardData.likes.some(like => like._id == userInfo.info._id);
+
+const createCard = (data) => {
+  data.canRemove = data.owner._id === userInfo.info._id;
+  data.isLiked = isCardLiked(data);
+  const card = new Card(data,
+    () => picturePopup.open(data.name, data.link),
     (card) => {
       cardForRemove = card;
       confirmDeletePopup.open();
+    },
+    (id, isLiked) => {
+      api.toggleCardLine(id, isLiked)
+        .then((data) => {
+          card.updateData(data, isCardLiked(data));
+          card.updateLikes();
+        });
     },
     cardConfigs);
   return card.getCard();

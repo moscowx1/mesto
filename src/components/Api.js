@@ -77,4 +77,17 @@ export default class Api {
       .then(res => res.json())
       .catch(this._handleError);
   }
+
+  toggleCardLine(id, isLiked) {
+    const method = isLiked ? "DELETE" : "PUT";
+
+    return fetch(`https://mesto.nomoreparties.co/v1/${this._group}/cards/likes/${id}`, {
+        headers: {
+          authorization: this._token,
+        },
+        method: method,
+      })
+      .then(res => res.json())
+      .catch(this._handleError);
+  }
 }
