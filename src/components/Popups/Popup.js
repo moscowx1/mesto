@@ -37,7 +37,7 @@ export default class Popup {
   }
 
   _removeTemporaryEventListeners() {
-    window.removeEventListener("keydown", this._keyHandlerWrapper);
+    window.removeEventListener("keydown", this._handleEscClose);
   }
 
   close() {
