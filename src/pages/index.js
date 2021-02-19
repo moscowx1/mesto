@@ -71,11 +71,28 @@ const addPicPopup = new PopupWithForm(
 
 const changeAvatarPopup = new PopupWithForm(
   changeAvatarPopupConfigs,
-  ({ link }) => userInfo.setUserAvatar(link));
+  (avatar) => {
+    changeAvatarPopup.setLoading(true);
+    api.setUserAvatar(avatar)
+      .then(() => {
+        userInfo.setUserAvatar(avatar.avatar);
+        changeAvatarPopup.setLoading(false);
+        changeAvatarPopup.close();
+        console.log(avatar);
+      });
+  });
 
 const profilePopup = new PopupWithAutoFilledForm(
   profilePopupConfigs,
-  userInfo.setUserInfo,
+  (data) => {
+    profilePopup.setLoading(true);
+    api.setUserInfo(data)
+      .then(data => {
+        userInfo.setUserInfo(data);
+        profilePopup.setLoading(false);
+        profilePopup.close();
+      });
+  },
   userInfo.getUserInfo,
 );
 

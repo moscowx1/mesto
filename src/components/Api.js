@@ -18,7 +18,20 @@ export default class Api {
       .catch(this._handleError);
   }
 
-  updateUserInfo(data) {
+  setUserAvatar(avatar) {
+    return fetch(`https://mesto.nomoreparties.co/v1/${this._group}/users/me/avatar`, {
+      method: "PATCH",
+      headers: {
+        authorization: this._token,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(avatar)
+    })
+    .then(res => res.json())
+    .catch(this._handleError);
+  }
+
+  setUserInfo(data) {
     return fetch(`https://mesto.nomoreparties.co/v1/${this._group}/users/me`, {
       method: "PATCH",
       headers: {
@@ -35,7 +48,7 @@ export default class Api {
     return fetch(`https://mesto.nomoreparties.co/v1/${this._group}/users/me`, {
         headers: {
           authorization: this._token,
-        },
+        }
       })
       .then(res => res.json())
       .catch(this._handleError);

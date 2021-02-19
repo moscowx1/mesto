@@ -26,14 +26,17 @@ export default class UserInfo {
   setUserAvatar(link) {
     const oldLink = this._avatarElem.src;
     this._avatarElem.src = link;
-    this._avatarElem.addEventListener("error", () => {
+    this._avatarElem.addEventListener("error", (err) => {
       alert("Возникла ошибка");
       this._avatarElem.src = oldLink;
     });
   }
 
-  setUserInfo({ name, desc }) {
-    this._nameElem.textContent = name;
-    this._descElem.textContent = desc;
+  setUserInfo({ name, about }) {
+    if (name)
+      this._nameElem.textContent = name;
+
+    if (about)
+      this._descElem.textContent = about;
   }
 }
