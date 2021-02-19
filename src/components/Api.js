@@ -53,4 +53,24 @@ export default class Api {
       .then(res => res.json())
       .catch(this._handleError);
   }
+
+  addCard(data) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve('foo');
+      }, 30000);
+    });
+
+
+    return fetch(`https://mesto.nomoreparties.co/v1/${this._group}/cards`, {
+        headers: {
+          authorization: this._token,
+          "Content-Type": "application/json"
+        },
+        method: "POST",
+        body: JSON.stringify(data)
+      })
+      .then(res => res.json())
+      .catch(this._handleError);
+  }
 }

@@ -27,8 +27,13 @@ export default class PopupWithSubmit extends Popup {
   }
 
   submitForm(evt) {
+    this.setLoading(true);
     evt.preventDefault();
     this._submitHandler();
-    //this.close();
+  }
+
+  close() {
+    this.setLoading(false);
+    super.close();
   }
 }

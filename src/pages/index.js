@@ -64,34 +64,29 @@ const cardSection = new Section(
 
 const addPicPopup = new PopupWithForm(
   addPicPopupConfigs,
-  (cardData) => {
-    const cardElem = createCard(cardData);
-    cardSection.addItem(cardElem);
+  (initData) => {
+    api.addCard(initData)
+      .then(data => {
+        const elem = createCard(data)
+        cardSection.addItem(elem)
+      })
+      .finally(() => addPicPopup.close());
   });
 
 const changeAvatarPopup = new PopupWithForm(
   changeAvatarPopupConfigs,
   (avatar) => {
-    changeAvatarPopup.setLoading(true);
     api.setUserAvatar(avatar)
-      .then(() => {
-        userInfo.setUserAvatar(avatar.avatar);
-        changeAvatarPopup.setLoading(false);
-        changeAvatarPopup.close();
-        console.log(avatar);
-      });
+      .then(() => userInfo.setUserAvatar(avatar.avatar))
+      .finally(() => changeAvatarPopup.close());
   });
 
 const profilePopup = new PopupWithAutoFilledForm(
   profilePopupConfigs,
   (data) => {
-    profilePopup.setLoading(true);
     api.setUserInfo(data)
-      .then(data => {
-        userInfo.setUserInfo(data);
-        profilePopup.setLoading(false);
-        profilePopup.close();
-      });
+      .then(data => userInfo.setUserInfo(data))
+      .finally(() => profilePopup.close());
   },
   userInfo.getUserInfo,
 );
