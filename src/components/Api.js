@@ -1,7 +1,6 @@
 export default class Api {
-  constructor(auth, group) {
-    this._token = "1dec268d-fa9a-4530-a017-5816c4c1f34f";
-    this._group = "cohort-20";
+  constructor(configs) {
+    this._configs = configs;
   }
 
   _handleError(err) {
@@ -9,9 +8,9 @@ export default class Api {
   }
 
   getCards() {
-    return fetch(`https://mesto.nomoreparties.co/v1/${this._group}/cards`, {
+    return fetch(`https://mesto.nomoreparties.co/v1/${this._configs.group}/cards`, {
         headers: {
-          authorization: this._token,
+          authorization: this._configs.token,
         },
       })
       .then(res => res.json())
@@ -19,10 +18,10 @@ export default class Api {
   }
 
   setUserAvatar(avatar) {
-    return fetch(`https://mesto.nomoreparties.co/v1/${this._group}/users/me/avatar`, {
+    return fetch(`https://mesto.nomoreparties.co/v1/${this._configs.group}/users/me/avatar`, {
       method: "PATCH",
       headers: {
-        authorization: this._token,
+        authorization: this._configs.token,
         "Content-Type": "application/json"
       },
       body: JSON.stringify(avatar)
@@ -32,10 +31,10 @@ export default class Api {
   }
 
   setUserInfo(data) {
-    return fetch(`https://mesto.nomoreparties.co/v1/${this._group}/users/me`, {
+    return fetch(`https://mesto.nomoreparties.co/v1/${this._configs.group}/users/me`, {
       method: "PATCH",
       headers: {
-        authorization: this._token,
+        authorization: this._configs.token,
         "Content-Type": "application/json"
       },
       body: JSON.stringify(data)
@@ -45,9 +44,9 @@ export default class Api {
   }
 
   getUserInfo() {
-    return fetch(`https://mesto.nomoreparties.co/v1/${this._group}/users/me`, {
+    return fetch(`https://mesto.nomoreparties.co/v1/${this._configs.group}/users/me`, {
         headers: {
-          authorization: this._token,
+          authorization: this._configs.token,
         }
       })
       .then(res => res.json())
@@ -55,9 +54,9 @@ export default class Api {
   }
 
   addCard(data) {
-    return fetch(`https://mesto.nomoreparties.co/v1/${this._group}/cards`, {
+    return fetch(`https://mesto.nomoreparties.co/v1/${this._configs.group}/cards`, {
         headers: {
-          authorization: this._token,
+          authorization: this._configs.token,
           "Content-Type": "application/json"
         },
         method: "POST",
@@ -68,9 +67,9 @@ export default class Api {
   }
 
   removeCard(id) {
-    return fetch(`https://mesto.nomoreparties.co/v1/${this._group}/cards/${id}`, {
+    return fetch(`https://mesto.nomoreparties.co/v1/${this._configs.group}/cards/${id}`, {
         headers: {
-          authorization: this._token,
+          authorization: this._configs.token,
         },
         method: "DELETE",
       })
@@ -81,9 +80,9 @@ export default class Api {
   toggleCardLine(id, isLiked) {
     const method = isLiked ? "DELETE" : "PUT";
 
-    return fetch(`https://mesto.nomoreparties.co/v1/${this._group}/cards/likes/${id}`, {
+    return fetch(`https://mesto.nomoreparties.co/v1/${this._configs.group}/cards/likes/${id}`, {
         headers: {
-          authorization: this._token,
+          authorization: this._configs.token,
         },
         method: method,
       })

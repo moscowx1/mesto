@@ -24,8 +24,9 @@ import { validationConfigs,
 import PopupWithSubmit from "../components/Popups/PopupWithSubmit";
 
 import Api from "../components/Api.js";
+import { apiConfigs } from "../utils/apiConfigs.js";
 
-const api = new Api();
+const api = new Api(apiConfigs);
 
 const userInfo = new UserInfo(profilePopupConfigs, api);
 await userInfo.initProfile();
