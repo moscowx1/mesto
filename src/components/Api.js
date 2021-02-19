@@ -66,4 +66,15 @@ export default class Api {
       .then(res => res.json())
       .catch(this._handleError);
   }
+
+  removeCard(id) {
+    return fetch(`https://mesto.nomoreparties.co/v1/${this._group}/cards/${id}`, {
+        headers: {
+          authorization: this._token,
+        },
+        method: "DELETE",
+      })
+      .then(res => res.json())
+      .catch(this._handleError);
+  }
 }

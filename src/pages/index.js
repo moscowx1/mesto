@@ -37,7 +37,11 @@ const confirmDeletePopup = new PopupWithSubmit(
   confirmDeletePopupConfigs,
   () => {
     if (cardForRemove) {
-      cardForRemove.removeElement();
+      api.removeCard(cardForRemove.getId())
+        .then(() => {
+          cardForRemove.removeElement();
+          confirmDeletePopup.close();
+        });
   }}
 );
 

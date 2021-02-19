@@ -7,6 +7,10 @@ export default class Card {
     this._configs = configs;
   }
 
+  getId() {
+    return this._data._id;
+  }
+
   _getTemplate() {
     const card = document
       .querySelector(this._configs.templateSelector)
